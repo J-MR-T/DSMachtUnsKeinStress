@@ -5,6 +5,8 @@ public enum DisplayObjects {
     SPACE(' '),
     STAR('*'),
     PLUS('+'),
+    ZERO('0'),
+    ONE('1'),
     BLOCK('\u2588'),
     LIGHT_SHADE('\u2591'),
     MEDIUM_SHADE('\u2592'),
@@ -23,10 +25,28 @@ public enum DisplayObjects {
         return asChar;
     }
 
-    private final char asChar;
+    private char asChar;
+
+    public static void changeToAscii(){
+        for (DisplayObjects obj : DisplayObjects.values()) {
+            if(obj==WALL_LOWER){
+                obj.asChar='_';
+            }
+        }
+
+    }
 
     DisplayObjects(char asChar) {
         this.asChar = asChar;
+    }
+
+    public static DisplayObjects getDisplayObject(char c) {
+        for (DisplayObjects obj : DisplayObjects.values()) {
+            if (obj.asChar == c) {
+                return obj;
+            }
+        }
+        return null;
     }
 
     @Override
