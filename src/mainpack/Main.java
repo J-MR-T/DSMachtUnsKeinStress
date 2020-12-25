@@ -11,12 +11,15 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        Renderer r = new Renderer(10, 10);
+        if(args.length==0){
+            args=new String[]{"10","10"};
+        }
+        Renderer r = new Renderer(Integer.parseInt(args[0]),Integer.parseInt(args[1]));
         r.fillWithEmptyFrame();
 //        r.fillWithEmptyFrameThick();
         r.draw(new int[]{1, 1}, DisplayObjects.BLOCK);
         int[] playerPos = {1, 1};
-        KeyListener l = new KeyListener(r,playerPos);
+        KeyListener l = new KeyListener(r, playerPos);
         JFrame hidden = new JFrame();
         hidden.setBounds(-50, -50, 0, 0);
         hidden.addKeyListener(l);
@@ -28,7 +31,10 @@ public class Main {
         hidden.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         hidden.setVisible(true);
         hidden.setAutoRequestFocus(true);
-//        DisplayObjects.changeToAscii();
+        r.renderFrame();
+        System.out.println("Does the frame above look right to you? [y/n] (Don't press enter, just the keys!)");
+        DisplayObjects.changeToAscii();
         r.renderFrame();
     }
+
 }

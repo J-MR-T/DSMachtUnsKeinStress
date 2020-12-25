@@ -30,10 +30,10 @@ public class KeyListener extends Component implements java.awt.event.KeyListener
         } else if (e.getKeyChar() == 'd' && playerPos[0] < r.width - 2) {
             r.moveRight(playerPos);
             r.doScheduledDraw();
+        } else if (e.getKeyChar() == 'y') {
+
         } else if (e.getKeyChar() == 'e') {
             System.exit(0);
-//                } else if (e.getKeyChar() == DisplayObjects.ZERO.asChar()) {
-//                    r.scheduleDraw(playerPos, DisplayObjects.ZERO);
         } else {
             r.scheduleDraw(playerPos, DisplayObjects.getDisplayObject(e.getKeyChar()));
         }

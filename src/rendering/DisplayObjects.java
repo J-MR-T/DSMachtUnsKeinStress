@@ -7,6 +7,8 @@ public enum DisplayObjects {
     PLUS('+'),
     ZERO('0'),
     ONE('1'),
+    LEFT_BRACKET('('),
+    RIGHT_BRACKET(')'),
     BLOCK('\u2588'),
     LIGHT_SHADE('\u2591'),
     MEDIUM_SHADE('\u2592'),
@@ -28,12 +30,12 @@ public enum DisplayObjects {
     private char asChar;
 
     public static void changeToAscii(){
-        for (DisplayObjects obj : DisplayObjects.values()) {
-            if(obj==WALL_LOWER){
-                obj.asChar='_';
-            }
-        }
-
+        WALL_LOWER.asChar='_';
+        WALL_UPPER.asChar='~';
+        WALL_LEFT.asChar=WALL_RIGHT.asChar='|';
+        CORNER_LOW_RIGHT.asChar=CORNER_UP_LEFT.asChar='/';
+        CORNER_LOW_LEFT.asChar= CORNER_UP_RIGHT.asChar='\\';
+        BLOCK.asChar='|';
     }
 
     DisplayObjects(char asChar) {
