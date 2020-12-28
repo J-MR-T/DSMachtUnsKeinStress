@@ -3,10 +3,12 @@ package UserInput;
 import rendering.DisplayObjects;
 import rendering.Renderer;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 public class KeyListenerWindows extends KeyListenerAbstract{
 
@@ -17,7 +19,18 @@ public class KeyListenerWindows extends KeyListenerAbstract{
        frame = new JFrame();
        frame.setBounds(-50,-50,0,0);
        frame.addKeyListener(listener);
+       try {
+           frame.setIconImage(ImageIO.read(getClass().getResourceAsStream("SantaPingu.png")));
+       } catch (IOException e) {
+           e.printStackTrace();
+       }
+       frame.requestFocus();
    }
+
+    @Override
+    public void close() throws Exception {
+        frame.dispose();
+    }
 
     private class KeyListenerImpl implements KeyListener{
 

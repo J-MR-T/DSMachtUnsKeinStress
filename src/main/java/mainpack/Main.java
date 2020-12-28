@@ -3,7 +3,6 @@ package mainpack;
 import UserInput.Initializer;
 import UserInput.KeyListenerWindows;
 import rendering.DisplayObjects;
-import rendering.Renderer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -19,7 +18,7 @@ public class Main {
             System.out.println("You have to enter useful values, you know? smh");
             System.exit(0);
         }
-        Renderer r = new Renderer(Initializer.getBoardWidth(), Initializer.getBoardHeight());
+        javax.swing.Renderer r = new Renderer(Initializer.getBoardWidth(), Initializer.getBoardHeight());
         r.fillWithEmptyFrame();
         r.generateNoise(Initializer.getSpaceFactor());
 //        r.fillWithEmptyFrameThick();
