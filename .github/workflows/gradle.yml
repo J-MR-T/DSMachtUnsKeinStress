@@ -24,3 +24,15 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ds-invader.zip
+        path: build/distributions/ds-invader.zip
+    - name: compress bin archive
+      run: zstd -10 build/distributions/ds-invader.tar
+    - name: upload artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: ds-invader.tar.zstd
+        path: build/distributions/ds-invader.tar.zstd
