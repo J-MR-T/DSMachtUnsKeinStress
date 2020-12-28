@@ -1,12 +1,11 @@
 package mainpack;
 
 import UserInput.Initializer;
-import UserInput.KeyListener;
+import UserInput.KeyListenerWindows;
 import rendering.DisplayObjects;
 import rendering.Renderer;
 
 import javax.imageio.ImageIO;
-import javax.print.attribute.standard.Finishings;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +25,7 @@ public class Main {
 //        r.fillWithEmptyFrameThick();
         r.draw(new int[]{1, 1}, DisplayObjects.BLOCK);
         int[] playerPos = {1, 1};
-        KeyListener l = new KeyListener(r, playerPos);
+        KeyListenerWindows l = new KeyListenerWindows(r, playerPos);
         JFrame hidden = new JFrame();
         hidden.setBounds(-50, -50, 0, 0);
         hidden.addKeyListener(l);
@@ -65,7 +64,6 @@ public class Main {
             DisplayObjects.changeToAscii();
         }
         r.renderFrame();
-        r.startTime = System.nanoTime();
     }
 
 }

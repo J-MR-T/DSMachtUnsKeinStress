@@ -26,12 +26,7 @@ public enum DisplayObjects {
     public static DisplayObjects getRandomDisplayObject() {
         DisplayObjects[] values = DisplayObjects.values();
         int objectIndex = (int) (Math.random() * values.length);
-        for (int i = 0; i < values.length; i++) {
-            if(i==objectIndex){
-                return values[i];
-            }
-        }
-        return null;
+        return values[objectIndex];
     }
 
     public char asChar() {

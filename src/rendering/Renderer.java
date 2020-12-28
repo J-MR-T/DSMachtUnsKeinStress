@@ -1,24 +1,32 @@
 package rendering;
 
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+
 public class Renderer {
-    public DisplayObjects[][] screen;
+    public ArrayList<DisplayObjects[][]> screens;
     public final int width;
     public final int height;
-    public long startTime = System.nanoTime();
 
     private Thread scheduledDraw = null;
 
     public Renderer(int width, int height) {
-        this.width = width;
+        this.width = width * 2 - 1;
         this.height = height;
-        screen = new DisplayObjects[width * 2 - 1][height];
+        screens = new ArrayList<DisplayObjects[][]>();
+        screens.add(new DisplayObjects[width * 2 - 1][height]);
     }
 
     public void changeToAscii() {
         DisplayObjects.changeToAscii();
+    }
+
+    /**
+     * @return Top of screens-list
+     */
+    public DisplayObjects[][] peek() {
+        return screens.size() > 0 ? screens.get(screens.size() - 1) : null;
     }
 
     public void renderFrame() {
@@ -27,17 +35,21 @@ public class Renderer {
         for (int i = 0; i < 30; i++) {
             s.append('\n');
         }
-        for (int y = 0; y < screen[0].length; y++) {
-            for (int x = 0; x < screen.length; x++) {
-                DisplayObjects[] xAxis = screen[x];
-                s.append(xAxis[y].asChar());
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                for (int i = screens.size() - 1; i >= 0; i++) {
+                    DisplayObjects[][] screen = screens.get(i);
+                    if (screen[x][y] != DisplayObjects.SPACE || i == 0) {
+                        s.append(screen[x][y]);
+                    }
+                }
             }
             s.append('\n');
         }
         System.out.println(s.toString());
     }
 
-    public boolean isEmpty(boolean thickFrame) {
+    public boolean isEmpty(boolean thickFrame, DisplayObjects[][] screen) {
         //TODO thick frame isn't handled yet
         int numberOfNonSpaceItems = -1;
         if (!thickFrame) {
@@ -55,7 +67,7 @@ public class Renderer {
     }
 
 
-    public void generateNoise(double spaceFactor) {
+    public void generateNoise(double spaceFactor, DisplayObjects[][] screen) {
         for (int i = 1; i < width - 1; i++) {
             DisplayObjects[] displayObjects = screen[i * 2];
             for (int j = 1; j < displayObjects.length - 1; j++) {
@@ -69,7 +81,7 @@ public class Renderer {
         }
     }
 
-    public void fillWithEmptyFrame() {
+    public void fillWithEmptyFrame(DisplayObjects[][] screen) {
         for (int y = 0; y < screen.length; y++) {
             DisplayObjects[] xAxis = screen[y];
             if (y == 0) {
@@ -95,7 +107,7 @@ public class Renderer {
         screen[screen.length - 1][screen[0].length - 1] = DisplayObjects.CORNER_LOW_RIGHT;
     }
 
-    public void fillWithEmptyFrameThick() {
+    public void fillWithEmptyFrameThick(DisplayObjects[][] screen) {
         for (int y = 0; y < screen.length; y++) {
             DisplayObjects[] xAxis = screen[y];
             xAxis[0] = DisplayObjects.WALL_UPPER;
@@ -130,7 +142,7 @@ public class Renderer {
     }
 
 
-    public void draw(int[] pos, DisplayObjects d) {
+    public void draw(int[] pos, DisplayObjects d, DisplayObjects[][] screen) {
         screen[pos[0] * 2][pos[1]] = d;
     }
 
@@ -138,7 +150,7 @@ public class Renderer {
         return scheduledDraw != null;
     }
 
-    public void scheduleDraw(@Nullable int[] pos, @Nullable DisplayObjects d) {
+    public void scheduleDraw(@Nullable int[] pos, @Nullable DisplayObjects d, DisplayObjects[][] screen) {
         int[] finalPos = pos.clone();
         if (d != null) {
             scheduledDraw = new Thread(() -> screen[finalPos[0] * 2][finalPos[1]] = d);
@@ -152,31 +164,31 @@ public class Renderer {
         }
     }
 
-    public void moveUp(int[] pos) {
+    public void moveUp(int[] pos, DisplayObjects[][] screen) {
         int[] old = new int[]{pos[0], pos[1]};
-        move(old, --pos[1] == 0 ? new int[]{pos[0], ++pos[1]} : pos);
+        move(old, --pos[1] == 0 ? new int[]{pos[0], ++pos[1]} : pos, screen);
     }
 
-    public void moveDown(int[] pos) {
+    public void moveDown(int[] pos, DisplayObjects[][] screen) {
         int[] old = new int[]{pos[0], pos[1]};
-        move(old, ++pos[1] == screen[0].length ? new int[]{pos[0], --pos[1]} : pos);
+        move(old, ++pos[1] == height ? new int[]{pos[0], --pos[1]} : pos, screen);
     }
 
-    public void moveLeft(int[] pos) {
+    public void moveLeft(int[] pos, DisplayObjects[][] screen) {
         int[] old = new int[]{pos[0], pos[1]};
-        move(old, --pos[0] == 0 ? new int[]{++pos[0], pos[1]} : pos);
+        move(old, --pos[0] == 0 ? new int[]{++pos[0], pos[1]} : pos, screen);
     }
 
-    public void moveRight(int[] pos) {
+    public void moveRight(int[] pos, DisplayObjects[][] screen) {
         int[] old = new int[]{pos[0], pos[1]};
-        move(old, ++pos[0] == screen[0].length ? new int[]{--pos[0], pos[1]} : pos);
+        move(old, ++pos[0] == width ? new int[]{--pos[0], pos[1]} : pos, screen);
     }
 
-    public void move(int[] from, int[] to) {
-        copy(from, to, true);
+    public void move(int[] from, int[] to, DisplayObjects[][] screen) {
+        copy(from, to, true, screen);
     }
 
-    public void copy(int[] from, int[] to, boolean deleteOld) {
+    public void copy(int[] from, int[] to, boolean deleteOld, DisplayObjects[][] screen) {
         from = new int[]{from[0] * 2, from[1]};
         to = new int[]{to[0] * 2, to[1]};
         screen[to[0]][to[1]] = screen[from[0]][from[1]];
