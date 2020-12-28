@@ -3,8 +3,10 @@ package UserInput;
 import rendering.DisplayObjects;
 import rendering.Renderer;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class KeyListenerWindows extends KeyListenerAbstract{
 
