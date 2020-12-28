@@ -23,19 +23,30 @@ public enum DisplayObjects {
     CORNER_LOW_RIGHT('\u259F');
 
 
+    public static DisplayObjects getRandomDisplayObject() {
+        DisplayObjects[] values = DisplayObjects.values();
+        int objectIndex = (int) (Math.random() * values.length);
+        for (int i = 0; i < values.length; i++) {
+            if(i==objectIndex){
+                return values[i];
+            }
+        }
+        return null;
+    }
+
     public char asChar() {
         return asChar;
     }
 
     private char asChar;
 
-    public static void changeToAscii(){
-        WALL_LOWER.asChar='_';
-        WALL_UPPER.asChar='~';
-        WALL_LEFT.asChar=WALL_RIGHT.asChar='|';
-        CORNER_LOW_RIGHT.asChar=CORNER_UP_LEFT.asChar='/';
-        CORNER_LOW_LEFT.asChar= CORNER_UP_RIGHT.asChar='\\';
-        BLOCK.asChar='|';
+    public static void changeToAscii() {
+        WALL_LOWER.asChar = '_';
+        WALL_UPPER.asChar = '~';
+        WALL_LEFT.asChar = WALL_RIGHT.asChar = '|';
+        CORNER_LOW_RIGHT.asChar = CORNER_UP_LEFT.asChar = '/';
+        CORNER_LOW_LEFT.asChar = CORNER_UP_RIGHT.asChar = '\\';
+        BLOCK.asChar = '|';
     }
 
     DisplayObjects(char asChar) {

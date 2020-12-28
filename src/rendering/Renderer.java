@@ -7,16 +7,17 @@ public class Renderer {
     public DisplayObjects[][] screen;
     public final int width;
     public final int height;
+    public long startTime = System.nanoTime();
 
     private Thread scheduledDraw = null;
 
     public Renderer(int width, int height) {
         this.width = width;
         this.height = height;
-        screen = new DisplayObjects[width*2-1][height];
+        screen = new DisplayObjects[width * 2 - 1][height];
     }
 
-    public void changeToAscii(){
+    public void changeToAscii() {
         DisplayObjects.changeToAscii();
     }
 
@@ -34,6 +35,38 @@ public class Renderer {
             s.append('\n');
         }
         System.out.println(s.toString());
+    }
+
+    public boolean isEmpty(boolean thickFrame) {
+        //TODO thick frame isn't handled yet
+        int numberOfNonSpaceItems = -1;
+        if (!thickFrame) {
+            for (int i = 1; i < screen.length - 1; i++) {
+                DisplayObjects[] displayObjects = screen[i];
+                for (int j = 1; j < displayObjects.length - 1; j++) {
+                    DisplayObjects displayObject = displayObjects[j];
+                    if (displayObject != DisplayObjects.SPACE) {
+                        numberOfNonSpaceItems++;
+                    }
+                }
+            }
+        }
+        return numberOfNonSpaceItems < 1;
+    }
+
+
+    public void generateNoise(double spaceFactor) {
+        for (int i = 1; i < width - 1; i++) {
+            DisplayObjects[] displayObjects = screen[i * 2];
+            for (int j = 1; j < displayObjects.length - 1; j++) {
+                DisplayObjects object = DisplayObjects.getRandomDisplayObject();
+                if (Math.random() < spaceFactor) {
+                    object = DisplayObjects.SPACE;
+                }
+                displayObjects[j] = object == DisplayObjects.EMPTY || object == DisplayObjects.BLOCK ?
+                        DisplayObjects.SPACE : object;
+            }
+        }
     }
 
     public void fillWithEmptyFrame() {
@@ -107,7 +140,7 @@ public class Renderer {
 
     public void scheduleDraw(@Nullable int[] pos, @Nullable DisplayObjects d) {
         int[] finalPos = pos.clone();
-        if (d != null){
+        if (d != null) {
             scheduledDraw = new Thread(() -> screen[finalPos[0] * 2][finalPos[1]] = d);
         }
     }

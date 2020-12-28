@@ -10,6 +10,7 @@ public class KeyListener extends Component implements java.awt.event.KeyListener
 
     private Renderer r;
     private int[] playerPos;
+    private Boolean answer = null;
 
     public KeyListener(Renderer r, int[] playerPos) {
         this.r = r;
@@ -31,8 +32,29 @@ public class KeyListener extends Component implements java.awt.event.KeyListener
             r.moveRight(playerPos);
             r.doScheduledDraw();
         } else if (e.getKeyChar() == 'y') {
-
+            setAnswer(true);
+            return;
+        } else if (e.getKeyChar() == 'n') {
+            setAnswer(false);
+            return;
+        } else if (e.getKeyChar() == '\n') {
+            if (r.isEmpty(false)) {
+                System.out.println("-".repeat(r.width * 2 - 1));
+                System.out.printf("Nice! Well done! This took you exactly '%10.6f' Seconds %nRestart or end? [r/e]%n",
+                        Math.pow(10, -9) * (System.nanoTime()-r.startTime));
+                System.out.println("-".repeat(r.width * 2 - 1));
+                return;
+            } else {
+                System.out.println("You missed a spot or two!");
+            }
+        } else if (e.getKeyChar() == 'r') {
+            r.fillWithEmptyFrame();
+            r.generateNoise(Initializer.getSpaceFactor());
+            this.playerPos = new int[]{1, 1};
+            r.draw(playerPos, DisplayObjects.BLOCK);
+            r.startTime = System.nanoTime();
         } else if (e.getKeyChar() == 'e') {
+            System.out.println("Bye!");
             System.exit(0);
         } else {
             r.scheduleDraw(playerPos, DisplayObjects.getDisplayObject(e.getKeyChar()));
@@ -48,5 +70,21 @@ public class KeyListener extends Component implements java.awt.event.KeyListener
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    public void resetAnswer() {
+        answer = null;
+    }
+
+    public boolean isWaitingForAnswer() {
+        return answer == null;
+    }
+
+    public boolean getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(boolean answer) {
+        this.answer = answer;
     }
 }
