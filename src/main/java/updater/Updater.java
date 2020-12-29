@@ -40,7 +40,7 @@ public class Updater {
     }
 
     public static void run(boolean forceGui) throws FileSystemException {
-        Var.player=new Player(new int[]{1,Var.height-2},new DisplayObjects[][]{{DisplayObjects.BLOCK}},new int[]{1,1},3);
+        Var.player=new Player(new int[]{10,15},new DisplayObjects[][]{{DisplayObjects.BLOCK}},new int[]{1,1},3);
         Var.formCollection= FormulaCollection.getFormulas();
         timer=new GameTimer();
         keys= KeyListener.getKeyListener(Updater::update,forceGui);
