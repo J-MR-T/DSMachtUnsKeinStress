@@ -14,7 +14,7 @@ public enum Texts {
     COLLISION_WITH_FORMULA("You were hit by a formula.\n" +
             "Solve to escape:\n" +
             "\n"),
-    PROMPT_ANSWER_FORMULA("Press A, B, or C to proceed: "),
+    PROMPT_ANSWER_FORMULA("Press 1, 2, or 3 to proceed: "),
     PLAYER_GIVES_WRONG_ANSWER("Insufficient.\n"),
     PLAYER_ANSWER_TAKES_TOO_LONG("Submission deadline! No Submission uploaded.\n" +
             "\n"),
