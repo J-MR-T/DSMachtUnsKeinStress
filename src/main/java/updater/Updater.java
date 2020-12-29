@@ -37,8 +37,18 @@ public class Updater {
             //returns to old spawning pattern
             durationOfStage = Integer.MAX_VALUE;
             stepsSinceStageTrigger = Integer.MIN_VALUE;
-            //ruft jetzt den reset auf
+
+            percMedium = Var.defaultPercMedium;
+            percHard = Var.defaultPercHard;
+            spawnRate = Var.defaultSpawnRate;
+            //ruft den neuen Timer auf
+            Var.timer.triggerWaitingForNextStage();
         }
+
+        //Spawn jetzt
+
+
+        durationOfStage++;
     }
 
     static void setSpawningParameters(float pPercMedium, float pPercHard, int pDurationOfStage, int pSpawnRate) {
