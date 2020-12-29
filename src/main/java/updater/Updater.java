@@ -139,7 +139,7 @@ public class Updater {
             }
             case HIT_BY_FORMULA -> {
                 try{
-                    var a=Var.formulas.get(Var.hitFormulaIndex).getDisplayForm().getAnswer(Integer.parseInt(String.valueOf(input)));
+                    var a=Var.formulas.get(Var.hitFormulaIndex).getDisplayForm().getAnswer(Integer.parseInt(String.valueOf(input))-1);
                     if(a.isRight()){
 
                     }else {
