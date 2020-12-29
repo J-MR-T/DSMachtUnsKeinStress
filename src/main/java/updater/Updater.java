@@ -2,6 +2,7 @@ package updater;
 
 import UserInput.KeyListener;
 import audioOutput.Audio;
+import entities.Answer;
 import entities.Formula;
 import entities.FormulaCollection;
 import entities.Player;
@@ -10,6 +11,7 @@ import mainpack.StateEnum;
 import mainpack.Var;
 import rendering.DisplayObjects;
 
+import java.util.EventListener;
 import java.util.function.Function;
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
@@ -89,6 +91,7 @@ public class Updater {
                         //Hit by formula
                         Var.gameState = StateEnum.HIT_BY_FORMULA;
                         Var.hitFormulaIndex = i;
+                        Var.formulas.get(Var.hitFormulaIndex).hit();
                     }
                 }
                 Var.player.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
@@ -98,10 +101,6 @@ public class Updater {
                     throw new RuntimeException(e);
                 }
                 Var.r.resetEntityLayer();
-
-                if (Var.gameState == StateEnum.HIT_BY_FORMULA) {
-                    Var.formulas.get(Var.hitFormulaIndex).hit();
-                }
 
                 //Spawning of new Entities
                 if (stepsSinceStageTrigger >= durationOfStage) {
@@ -128,10 +127,34 @@ public class Updater {
                 stepsSinceStageTrigger++;
             }
             case HIT_BY_FORMULA -> {
+                try{
+                    var a=Var.formulas.get(Var.hitFormulaIndex).getDisplayForm().getAnswer(Integer.parseInt(String.valueOf(input)));
+                    if(a.isRight()){
 
+                    }else {
+
+                    }
+                    Var.gameState= EVADING_FORMULAS;
+                }catch (NumberFormatException e){
+                    try {
+                        Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                    } catch (MalformedURLException e2) {
+                        throw new RuntimeException(e2);
+                    }
+                }catch (IndexOutOfBoundsException e){
+                    try {
+                        Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                    } catch (MalformedURLException e2) {
+                        throw new RuntimeException(e2);
+                    }
+                }
             }
             case MENU -> {
-
+                try {
+                    Var.r.renderFrame();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
