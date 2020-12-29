@@ -125,8 +125,11 @@ public class Updater {
                 //Spawning now
                 int entitiesToSpawn = spawnRate;
                 for (int i = 0; i < entitiesToSpawn; i++) {
-                    Formula newFormula = new Formula(getRandomCoordsOnTop(), Var.formulaDisplay, new int[]{1,1}, Var.formulaFrequency, randomDifficulty());
-                    Var.formulas.add(newFormula);
+                    int[] coords = getRandomCoordsOnTop();
+                    if(coords!=null){
+                        Formula newFormula = new Formula(coords, Var.formulaDisplay, new int[]{1,1}, Var.formulaFrequency, randomDifficulty());
+                        Var.formulas.add(newFormula);
+                    }
                 }
 
                 stepsSinceStageTrigger++;
@@ -198,14 +201,22 @@ public class Updater {
 
     private static int[] getRandomCoordsOnTop(){
         //lets generate a random x for the coord of the Formula
-        int[] coords = new int[]{randomX(), 0};
-        //lets check if there is already a formula there
-        for (int j = Var.formulas.size()-1; j >= 0; j--) {
-            if(Var.formulas.get(j).getX()==coords[0]) return getRandomCoordsOnTop(); //Recursively find new coords
-            if(Var.formulas.get(j).getY()>0){
-                break; //We can skip looking since from now on all formulas will be below
+        for (int i = 0; i < 10; i++) { //max 10 attempts
+            int[] coords = new int[]{randomX(), 0};
+            boolean conflict = false;
+            //lets check if there is already a formula there
+            for (int j = Var.formulas.size()-1; j >= 0; j--) {
+                if(Var.formulas.get(j).getX()==coords[0]) {
+                    conflict = true;
+                    break; //Recursively find new coords
+                    }
+                if(Var.formulas.get(j).getY()>0){
+                    break; //We can skip looking since from now on all formulas will be below
+                }
             }
+            if(!conflict)return coords;
         }
-        return coords;
+
+        return null;
     }
 }
