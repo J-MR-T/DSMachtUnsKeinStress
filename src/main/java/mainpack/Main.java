@@ -1,6 +1,10 @@
 package mainpack;
 
 import UserInput.Initializer;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 import rendering.Renderer;
@@ -14,7 +18,8 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException, FileSystemException {
+    public static void main(String[] args) throws InterruptedException, FileSystemException, ParseException {
+        CommandLine ln=parseCli(args);
         showStoryLine();
 //        try {
 //            Initializer.initialize();
@@ -24,6 +29,7 @@ public class Main {
 //        }
         Var.gameState = StateEnum.EVADING_FORMULAS;
         Var.r = new Renderer(20, 20);
+        if(!ln.hasOption("u"))Var.r.changeToAscii();
         Var.r.fillWithEmptyFrame(Var.r.screens.get(0));
 //        r.fillWithEmptyFrameThick();
         Var.r.draw(new int[]{1, 1}, DisplayObjects.BLOCK, Var.r.peek());
@@ -31,7 +37,7 @@ public class Main {
         Var.r.draw(new int[]{2, 2}, DisplayObjects.BLOCK, Var.r.peek());
         int[] playerPos = {1, 1};
         Var.r.renderFrame();
-        Updater.run(true);
+        Updater.run(ln.hasOption("g"));
     }
 
     private static void showStoryLine() {
@@ -89,6 +95,14 @@ public class Main {
             sleep(timeBetweenChars);
         }
         System.out.print("\n");
+    }
+
+    private static CommandLine parseCli(String[] args) throws ParseException {
+        Options options=new Options();
+        options.addOption("g",false,"furce swing gui hack");
+        options.addOption("u",false,"use unicode");
+        DefaultParser parser=new DefaultParser();
+        return parser.parse(options,args);
     }
 
 }
