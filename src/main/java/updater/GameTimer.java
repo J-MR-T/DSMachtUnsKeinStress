@@ -27,7 +27,7 @@ public class GameTimer extends Timer {
             this.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Var.gameState= StateEnum.KURZTEST.ordinal();
+                    Var.gameState= StateEnum.KURZTEST;
                     Var.gameStage++;
                     Updater.triggerKurztest(Var.gameStage);
                 }
@@ -36,7 +36,7 @@ public class GameTimer extends Timer {
             this.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Var.gameState=StateEnum.BOSS.ordinal();
+                    Var.gameState=StateEnum.BOSS;
                     Updater.setGameStage(StageEnum.BOSS_STAGE);
                 }
             }, Var.TIME_BETWEEN_KURZTESTS/2);

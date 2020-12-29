@@ -1,7 +1,7 @@
 package entities;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
-class DisplayedFormula {
+public class DisplayedFormula {
     private String question;
 
     public Answer[] getAnswers() {

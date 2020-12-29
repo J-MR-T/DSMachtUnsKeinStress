@@ -42,7 +42,7 @@ public class Renderer {
         StringBuilder s = new StringBuilder();
         //Add as many empty lines as needed
         s.append("\n".repeat(30));
-        if (Var.gameState == StateEnum.EVADING_FORMULAS.ordinal()) {
+        if (Var.gameState == StateEnum.EVADING_FORMULAS) {
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     for (int i = screens.size() - 1; i >= 0; i++) {
@@ -58,11 +58,11 @@ public class Renderer {
                 }
                 s.append('\n');
             }
-        } else if (Var.gameState == StateEnum.HIT_BY_FORMULA.ordinal() && Var.hitFormulaIndex != -1) {
+        } else if (Var.gameState == StateEnum.HIT_BY_FORMULA && Var.hitFormulaIndex != -1) {
             Formula hit = Var.formulas.get(Var.hitFormulaIndex);
             s.append(hit);
             //TODO warten bis formula gelöst ist
-        } else if (Var.gameState == StateEnum.MENU.ordinal()) {
+        } else if (Var.gameState == StateEnum.MENU) {
             StringBuilder builder = new StringBuilder();
             if (Var.whichText >= 0 && Var.whichText < Texts.values().length) {
                 builder.append(Texts.values()[Var.whichText]);

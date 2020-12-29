@@ -77,7 +77,7 @@ public class Updater {
         for (int i = 0; i < Var.formulas.size(); i++) {
             if (Var.player.collidesWith(Var.formulas.get(i))) {
                 //Hit by formula
-                Var.gameState = StateEnum.HIT_BY_FORMULA.ordinal();
+                Var.gameState = StateEnum.HIT_BY_FORMULA;
                 Var.hitFormulaIndex = i;
             }
         }
