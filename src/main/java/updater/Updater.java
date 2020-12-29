@@ -49,7 +49,19 @@ public class Updater {
         spawnRate = pSpawnRate;
     }
 
-    public static void triggerKurztest() {
-        setSpawningParameters(0.5f,0.3f,(int)Var.KURZTEST_DURATION,9999);
+    public static void triggerKurztest(int number) {
+        if (number != -1) {
+            if (number == 1) {
+                setSpawningParameters(0.5f, 0.3f, (int) Var.KURZTEST_DURATION, 4); //TODO playtest and determine values
+            } else if (number == 2) {
+                setSpawningParameters(0.4f, 0.4f, (int) Var.KURZTEST_DURATION, 5); //TODO playtest and determine values
+            } else if (number == 3) {
+                setSpawningParameters(0.3f, 0.5f, (int) Var.KURZTEST_DURATION, 6); //TODO playtest and determine values
+            }
+        }
+    }
+
+    public static void triggerBoss(){
+
     }
 }
