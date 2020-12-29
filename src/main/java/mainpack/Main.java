@@ -21,7 +21,7 @@ import java.util.InputMismatchException;
 public class Main {
     public static void main(String[] args) throws InterruptedException, FileSystemException, ParseException {
         CommandLine ln=parseCli(args);
-        showStoryLine();
+//        showStoryLine();
 //        try {
 //            Initializer.initialize();
 //        } catch (IllegalStateException | InputMismatchException e) {
