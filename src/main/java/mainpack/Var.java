@@ -13,8 +13,8 @@ import java.util.List;
 public class Var {
     public static Renderer r;
     public static GameTimer timer;
-    public static final int width = 0;
-    public static final int height = 0;
+    public static final int width = 20;
+    public static final int height = 20;
 
     public static int whichText = -1;
 

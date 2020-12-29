@@ -16,7 +16,7 @@ import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, FileSystemException {
-//        showStoryLine();
+        showStoryLine();
 //        try {
 //            Initializer.initialize();
 //        } catch (IllegalStateException | InputMismatchException e) {
@@ -27,10 +27,6 @@ public class Main {
         Var.r = new Renderer(20, 20);
         Var.r.fillWithEmptyFrame(Var.r.screens.get(0));
 //        r.fillWithEmptyFrameThick();
-        Var.r.draw(new int[]{1, 1}, DisplayObjects.BLOCK, Var.r.peek());
-        Var.r.draw(new int[]{2, 1}, DisplayObjects.BLOCK, Var.r.peek());
-        Var.r.draw(new int[]{2, 2}, DisplayObjects.BLOCK, Var.r.peek());
-        int[] playerPos = {1, 1};
         Var.r.renderFrame();
         Var.timer = new GameTimer();
         Updater.run(true);
