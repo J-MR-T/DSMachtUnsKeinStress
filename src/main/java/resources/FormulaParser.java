@@ -3,6 +3,7 @@ package resources;
 import com.google.gson.Gson;
 import entities.Answer;
 import entities.DisplayedFormula;
+import entities.FormulaCollection;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -34,17 +35,15 @@ public class FormulaParser {
         public Question[] easy;
         public Question[] medium;
         public Question[] hard;
-        List<DisplayedFormula> toFormulas(){
-            return IntStream.range(0,3).mapToObj(d->Arrays.stream(switch (d){
-                case 0->easy;
-                case 1->medium;
-                case 2->hard;
-                default -> throw new IllegalStateException("Unexpected value: " + d);
-            }).map(q->q.toFormula(d))).flatMap(s->s).collect(Collectors.toList());
-        }
+       FormulaCollection toFormulas(){
+           return new FormulaCollection(
+                   Arrays.stream(easy).map(q->q.toFormula(0)).collect(Collectors.toList()),
+                   Arrays.stream(easy).map(q->q.toFormula(1)).collect(Collectors.toList()),
+                   Arrays.stream(easy).map(q->q.toFormula(2)).collect(Collectors.toList()));
+       }
     }
 
-    public static List<DisplayedFormula> parseFormulas(InputStream from){
+    public static FormulaCollection parseFormulas(InputStream from){
         return new Gson().fromJson(new InputStreamReader(from, StandardCharsets.UTF_8),Questions.class).toFormulas();
     }
 }

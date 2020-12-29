@@ -1,6 +1,9 @@
 package entities;
 
-class DisplayedFormula {
+import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public class DisplayedFormula {
     private String question;
 
     public Answer[] getAnswers() {
