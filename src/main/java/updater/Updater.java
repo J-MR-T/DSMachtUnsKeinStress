@@ -72,7 +72,7 @@ public class Updater {
                     case 'w','a','s','d',' '->{}
                     default -> {
                         try {
-                            Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                            Audio.play(new URL("https://github.com/J-MR-T/UnicodeRenderer/raw/master/src/main/resources/sounds/betrugsversuch.wav"));
                         } catch (MalformedURLException e) {
                             throw new RuntimeException(e);
                         }
@@ -147,13 +147,13 @@ public class Updater {
                     Var.formulas.remove(Var.hitFormulaIndex);
                 }catch (NumberFormatException e){
                     try {
-                        Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                        Audio.play(new URL("https://github.com/J-MR-T/UnicodeRenderer/raw/master/src/main/resources/sounds/betrugsversuch.wav"));
                     } catch (MalformedURLException e2) {
                         throw new RuntimeException(e2);
                     }
                 }catch (IndexOutOfBoundsException e){
                     try {
-                        Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                        Audio.play(new URL("https://github.com/J-MR-T/UnicodeRenderer/raw/master/src/main/resources/sounds/betrugsversuch.wav"));
                     } catch (MalformedURLException e2) {
                         throw new RuntimeException(e2);
                     }

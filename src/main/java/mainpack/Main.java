@@ -1,6 +1,7 @@
 package mainpack;
 
 import UserInput.Initializer;
+import audioOutput.Audio;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
@@ -8,6 +9,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 import rendering.Renderer;
+import resources.ResourceLoader;
 import updater.GameTimer;
 import updater.Updater;
 
@@ -16,6 +18,8 @@ import javax.naming.SizeLimitExceededException;
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.InputMismatchException;
 
 public class Main {

@@ -12,7 +12,7 @@ public class ResourceLoader {
     private static FileSystemManager getManager() throws FileSystemException {
         if (manager == null) {
             manager = VFS.getManager();
-            URL.setURLStreamHandlerFactory(manager.getURLStreamHandlerFactory());
+//            URL.setURLStreamHandlerFactory(manager.getURLStreamHandlerFactory());
         }
         return manager;
     }
