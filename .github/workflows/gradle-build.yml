@@ -23,12 +23,12 @@ jobs:
     - name: upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ds-invader.zip
-        path: ./build/distributions/ds-invader.zip
+        name: call-of-dshulhu.zip
+        path: ./build/distributions/call-of-dshulhu.zip
     - name: compress bin archive
-      run: zstd -19 ./build/distributions/ds-invader.tar
+      run: zstd -19 ./build/distributions/call-of-dshulhu.tar
     - name: upload artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: ds-invader.tar.zst
-        path: ./build/distributions/ds-invader.tar.zst
+        name: call-of-dshulhu.tar.zst
+        path: ./build/distributions/call-of-dshulhu.tar.zst

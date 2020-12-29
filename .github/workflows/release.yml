@@ -35,17 +35,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
-          asset_path: ./build/distributions/ds-invader.zip
-          asset_name: ds-invader.zip
+          asset_path: ./build/distributions/call-of-dshulhu.zip
+          asset_name: call-of-dshulhu.zip
           asset_content_type: application/zip
       - name: compress bin archive
-        run: zstd -19 ./build/distributions/ds-invader.tar
+        run: zstd -19 ./build/distributions/call-of-dshulhu.tar
       - name: upload tarball
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.release.outputs.upload_url }}
-          asset_path: ./build/distributions/ds-invader.tar.zst
-          asset_name: ds-invader.tar.zst
+          asset_path: ./build/distributions/call-of-dshulhu.tar.zst
+          asset_name: call-of-dshulhu.tar.zst
           asset_content_type: application/zstd
