@@ -1,16 +1,23 @@
 package entities;
 
-import java.util.Arrays;
-import java.util.concurrent.atomic.AtomicInteger;
-
 class DisplayedFormula {
     private String question;
+
+    public Answer[] getAnswers() {
+        return answers;
+    }
+
     private Answer[] answers;
+    private int difficulty;
 
+    public int getDifficulty() {
+        return difficulty;
+    }
 
-    DisplayedFormula(String question, Answer[] answers) {
+    public DisplayedFormula(String question, Answer[] answers, int difficulty) {
         this.question = question;
         this.answers = answers;
+        this.difficulty=difficulty;
     }
 //
 //    public boolean answerFormula(char answer) {

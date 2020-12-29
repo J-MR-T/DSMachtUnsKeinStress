@@ -29,6 +29,7 @@ dependencies {
     implementation 'net.java.dev.jna:jna:5.6.0'
     implementation 'org.apache.commons:commons-vfs2:2.7.0'
     implementation 'commons-logging:commons-logging:1.2'
+    implementation 'com.google.code.gson:gson:2.8.6'
 }
 
 application {
