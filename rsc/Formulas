@@ -78,10 +78,22 @@ M := {1, 1, 2}. What is |P(M)|?
 (T) 4
 
 
-partial orders are
+Partial orders are
 (F) symmetric
 (T) reflexive
 (T) transitive
+
+
+Let G be a directed graph and V the set of its vertices. What is the maximum length of a simple path in G?
+(T) |V| - 1
+(F) |V|
+(F) |V| + 1
+
+
+X \ Y = Y \ X
+(F) is always true.
+(T) is true if X = Y.
+(T) is not always true.
 
 
 ****************
@@ -122,3 +134,9 @@ P({}) = ?
 (F) {{},{{}}}
 (F) {}
 (T) {{}}
+
+
+H := {{i,a}, {o,e}, {u,a}} and G := {{a,e}, {e,a}}. Then HG = ?
+(T) {{i,e}, {o,a}, {u,e}}
+(F) {{i,e}, {u,a}}
+(F) {{o,a}, {u,a}, {u,e}}
