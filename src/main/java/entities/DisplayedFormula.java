@@ -1,11 +1,11 @@
 package entities;
 
-class DisplayedFormula {
+public class DisplayedFormula {
     private String question;
     private Answer[] answers;
 
 
-    DisplayedFormula(String question, Answer[] answers) {
+   public DisplayedFormula(String question, Answer[] answers) {
         this.question = question;
         this.answers = answers;
     }

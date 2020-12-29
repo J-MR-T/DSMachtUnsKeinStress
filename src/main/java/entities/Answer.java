@@ -1,10 +1,10 @@
 package entities;
 
-class Answer {
+public class Answer {
     private String answerString;
     private boolean right;
 
-    Answer(String answerString, boolean right) {
+    public Answer(String answerString, boolean right) {
         this.answerString = answerString;
         this.right = right;
     }
