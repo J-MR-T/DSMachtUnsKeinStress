@@ -48,7 +48,7 @@ public class Updater {
         //Spawn jetzt
 
 
-        durationOfStage++;
+        stepsSinceStageTrigger++;
     }
 
     static void setSpawningParameters(float pPercMedium, float pPercHard, int pDurationOfStage, int pSpawnRate) {
