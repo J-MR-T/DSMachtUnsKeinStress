@@ -132,6 +132,7 @@ public class Updater {
                     if(a.isRight()){
 
                     }else {
+                        Var.player.setHp(Var.player.getHp()-1);
 
                     }
                     Var.gameState= EVADING_FORMULAS;
