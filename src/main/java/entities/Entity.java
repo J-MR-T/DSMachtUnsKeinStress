@@ -86,7 +86,11 @@ public abstract class Entity {
     }
 
     public void render(DisplayObjects[][] screenToRenderTo) {
-        //TODO
+        if(bounds[0]==1&&bounds[1]==1){
+            screenToRenderTo[getDisplayX(screenToRenderTo)][getDisplayY(screenToRenderTo)]=charRepresentation[0][0];
+        }else{
+            //TODO
+        }
     }
 
     public int getX() {
@@ -94,6 +98,14 @@ public abstract class Entity {
     }
 
     public int getY() {
+        return pos[1];
+    }
+
+    public int getDisplayX(DisplayObjects[][] screenToRenderTo) {
+        return pos[0]*2!=screenToRenderTo.length?pos[0]*2:pos[0]*2-1;
+    }
+
+    public int getDisplayY(DisplayObjects[][] screenToRenderTo) {
         return pos[1];
     }
 

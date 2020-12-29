@@ -23,22 +23,18 @@ public class Formula extends Entity {
 
     @Override
     public void updateInner() {
-        //Check for collisions before doing step
-        if (Var.player.collidesWith(this)) {
-            //lets render the math question
-            Var.isPaused = true;
+        //Collisions are checked in the Game Updater
 
-        }
     }
 
     public String toString() {
-        if(displayForm!=null) {
+        if (displayForm != null) {
             StringBuilder render = new StringBuilder();
             render.append("So it seems you ran into me  -  now you got to solve me\nSolve me for an epic boost or fail and die miserably\n");
             render.append(displayForm);
             render.append(".\n");
             return render.toString();
-        }else{
+        } else {
             return "";
         }
     }

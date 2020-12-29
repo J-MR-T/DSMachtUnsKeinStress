@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 public class FormulaCollection {
 	private DisplayedFormula currentQuestion;
-	private ArrayList<DisplayedFormula> questionlist = new ArrayList<DisplayedFormula>();
+	private ArrayList<DisplayedFormula> questionlist = new ArrayList<>();
 	private InputStream questionStream;
 	private int questionIndex = 0;
 	

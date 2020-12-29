@@ -5,27 +5,29 @@ import org.apache.commons.vfs2.*;
 import java.io.InputStream;
 
 public class ResourceLoader {
-    private static FileSystemManager manager=null;
+    private static FileSystemManager manager = null;
+
     private static FileSystemManager getManager() throws FileSystemException {
-        if(manager==null)manager=VFS.getManager();
+        if (manager == null) manager = VFS.getManager();
         return manager;
     }
-    private static FileObject resRoot=null;
+
+    private static FileObject resRoot = null;
+
     private static FileObject getResRoot() throws FileSystemException {
-        if(resRoot==null)getManager().resolveFile("res://");
+        if (resRoot == null) getManager().resolveFile("res://");
         return resRoot;
     }
 
     public static FileObject getResource(String path) throws FileSystemException {
-        var res= getResRoot().getChild(path);
-        if(res==null)throw new FileNotFoundException(path);
+        var res = getResRoot().getChild(path);
+        if (res == null) throw new FileNotFoundException(path);
         else return res;
     }
 
     public static InputStream getResourceAsStream(String path) throws FileSystemException {
         return getResource(path).getContent().getInputStream();
     }
-
 
 
 }

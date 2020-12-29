@@ -1,14 +1,20 @@
 package rendering;
 
+import entities.Formula;
+import mainpack.Var;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+
 import rendering.DisplayObjects;
 
 public class Renderer {
     public ArrayList<DisplayObjects[][]> screens;
     public final int width;
     public final int height;
+
+    public final int BOARD_LAYER = 0;
+    public final int ENTITY_LAYER = 1;
 
     private Thread scheduledDraw = null;
 
@@ -33,25 +39,37 @@ public class Renderer {
     public void renderFrame() {
         StringBuilder s = new StringBuilder();
         //Add as many empty lines as needed
-        for (int i = 0; i < 30; i++) {
-            s.append('\n');
-        }
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                for (int i = screens.size() - 1; i >= 0; i++) {
-                    DisplayObjects[][] screen = screens.get(i);
-                    if (screen[x][y] != DisplayObjects.EMPTY || i == 0) {
-                        if(i!=0){
-                            s.append(screen[x][y]);
-                        }else{
-                            s.append(DisplayObjects.SPACE);
+        s.append("\n".repeat(30));
+        if (Var.gameState == Var.EVADING_FORMULAS) {
+            for (int y = 0; y < height; y++) {
+                for (int x = 0; x < width; x++) {
+                    for (int i = screens.size() - 1; i >= 0; i++) {
+                        DisplayObjects[][] screen = screens.get(i);
+                        if (screen[x][y] != DisplayObjects.EMPTY || i == 0) {
+                            if (i != 0) {
+                                s.append(screen[x][y]);
+                            } else {
+                                s.append(DisplayObjects.SPACE);
+                            }
                         }
                     }
                 }
+                s.append('\n');
             }
-            s.append('\n');
+        }else if(Var.gameState==Var.HIT_BY_FORMULA&&Var.hitFormulaIndex!=-1){
+            Formula hit = Var.formulas.get(Var.hitFormulaIndex);
         }
         System.out.println(s.toString());
+    }
+
+    public void resetEntityLayer() {
+        DisplayObjects[][] entityLayer = screens.get(ENTITY_LAYER);
+        for (int i = 0; i < entityLayer.length; i++) {
+            DisplayObjects[] displayObjects = entityLayer[i];
+            for (int r = 0; r < displayObjects.length; r++) {
+                displayObjects[r] = DisplayObjects.EMPTY;
+            }
+        }
     }
 
     public boolean isEmpty(boolean thickFrame, DisplayObjects[][] screen) {
@@ -155,7 +173,7 @@ public class Renderer {
         return scheduledDraw != null;
     }
 
-    public void scheduleDraw(@Nullable int[] pos, @Nullable DisplayObjects d, DisplayObjects[][] screen) {
+    public void scheduleDraw(int[] pos, @Nullable DisplayObjects d, DisplayObjects[][] screen) {
         int[] finalPos = pos.clone();
         if (d != null) {
             scheduledDraw = new Thread(() -> screen[finalPos[0] * 2][finalPos[1]] = d);

@@ -7,8 +7,8 @@ public class Player extends Entity {
     private int hp;
     private final int maxHp;
 
-    public Player(int[] pos, DisplayObjects[][] charRepresentation, int[] bounds, int maxHp, int frequency) {
-        super(pos, charRepresentation, bounds, frequency);
+    public Player(int[] pos, DisplayObjects[][] charRepresentation, int[] bounds, int maxHp) {
+        super(pos, charRepresentation, bounds, 1);
         this.maxHp = maxHp;
         hp = maxHp;
     }
