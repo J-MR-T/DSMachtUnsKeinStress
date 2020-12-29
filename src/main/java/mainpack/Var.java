@@ -13,8 +13,8 @@ import java.util.List;
 public class Var {
     public static Renderer r;
     public static GameTimer timer;
-    public static final int width = 0;
-    public static final int height = 0;
+    public static final int width = 20;
+    public static final int height = 20;
 
     public static int whichText = -1;
 
@@ -42,5 +42,5 @@ public class Var {
 
     public static int formulaFrequency = 3; //Frequency of the Formula moving -  higher the slower
 
-    public static DisplayObjects[][] formulaDisplay = new DisplayObjects[][]{{DisplayObjects.FORMULA_SIGN}};
+    public static DisplayObjects[][] formulaDisplay = new DisplayObjects[][]{{DisplayObjects.DOWNWARD_TRIANGLE}};
 }

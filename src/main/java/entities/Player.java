@@ -17,13 +17,14 @@ public class Player extends Entity {
 
     private char movement;
 
-
+    protected void triggerMove(){}
 
     public Player(int[] pos, DisplayObjects[][] charRepresentation, int[] bounds, int maxHp) {
         super(pos, charRepresentation, bounds, 1);
         this.maxHp = maxHp;
         hp = maxHp;
     }
+
 
     /**
      * Moves the player up (Warning! Does not account for bounds!)

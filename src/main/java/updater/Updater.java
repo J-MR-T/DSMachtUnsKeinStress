@@ -72,7 +72,7 @@ public class Updater {
                     case 'w','a','s','d',' '->{}
                     default -> {
                         try {
-                            Audio.play(new URL("https://github.com/J-MR-T/UnicodeRenderer/raw/master/src/main/resources/sounds/betrugsversuch.wav"));
+                            Audio.play(new URL("res://sounds/betrugsversuch.wav"));
                         } catch (MalformedURLException e) {
                             throw new RuntimeException(e);
                         }
@@ -83,6 +83,9 @@ public class Updater {
                 for (int i = 0; i < Var.formulas.size(); i++) {
                     Formula formula = Var.formulas.get(i);
                     formula.update();
+                    if(formula.getY()>=Var.height-1){
+                        Var.formulas.remove(i);
+                    }
                     //Not sure if this can be done in one go
                     formula.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
                 }

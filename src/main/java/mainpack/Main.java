@@ -25,7 +25,7 @@ import java.util.InputMismatchException;
 public class Main {
     public static void main(String[] args) throws InterruptedException, FileSystemException, ParseException {
         CommandLine ln=parseCli(args);
-        showStoryLine();
+//        showStoryLine();
 //        try {
 //            Initializer.initialize();
 //        } catch (IllegalStateException | InputMismatchException e) {
@@ -43,7 +43,7 @@ public class Main {
         int[] playerPos = {1, 1};
         Var.r.renderFrame();
         Var.timer = new GameTimer();
-        Updater.run(ln.hasOption("g"));
+        Updater.run(true);
     }
 
     private static void showStoryLine() {
