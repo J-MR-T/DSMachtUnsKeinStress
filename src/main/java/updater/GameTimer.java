@@ -29,7 +29,7 @@ public class GameTimer extends Timer {
                 public void run() {
                     Var.gameState= StateEnum.KURZTEST.ordinal();
                     Var.gameStage++;
-                    Updater.triggerKurztest(Var.gameStage>=1&&Var.gameStage<=3?Var.gameStage:-1);
+                    Updater.triggerKurztest(Var.gameStage);
                 }
             }, Var.TIME_BETWEEN_KURZTESTS);
         }else{
@@ -37,7 +37,7 @@ public class GameTimer extends Timer {
                 @Override
                 public void run() {
                     Var.gameState=StateEnum.BOSS.ordinal();
-                    Updater.triggerBoss();
+                    Updater.setGameStage(StageEnum.BOSS_STAGE);
                 }
             }, Var.TIME_BETWEEN_KURZTESTS/2);
         }

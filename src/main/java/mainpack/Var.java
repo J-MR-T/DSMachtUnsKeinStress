@@ -15,7 +15,7 @@ public class Var {
 
     public static int whichText = -1;
 
-    public static int gameState;
+    public static StateEnum gameState;
 
     public static final long KURZTEST_DURATION = 30l * 1000;
     public static final long TIME_BETWEEN_KURZTESTS = 180l * 1000;
@@ -24,7 +24,7 @@ public class Var {
     public static int gameStage = StageEnum.NO_KURZTEST_YET.ordinal();
 
 
-    public static final Player player = null;
+    public static Player player = null;
     public static List<Formula> formulas;
     public static int hitFormulaIndex = -1;
 
