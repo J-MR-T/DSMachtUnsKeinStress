@@ -8,6 +8,7 @@ import org.apache.commons.cli.ParseException;
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 import rendering.Renderer;
+import updater.GameTimer;
 import updater.Updater;
 
 import javax.imageio.ImageIO;
@@ -37,6 +38,7 @@ public class Main {
         Var.r.draw(new int[]{2, 2}, DisplayObjects.BLOCK, Var.r.peek());
         int[] playerPos = {1, 1};
         Var.r.renderFrame();
+        Var.timer = new GameTimer();
         Updater.run(ln.hasOption("g"));
     }
 

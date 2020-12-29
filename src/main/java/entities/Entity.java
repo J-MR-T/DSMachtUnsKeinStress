@@ -86,9 +86,13 @@ public abstract class Entity {
     }
 
     public void render(DisplayObjects[][] screenToRenderTo) {
-        if(bounds[0]==1&&bounds[1]==1){
-            screenToRenderTo[getDisplayX(screenToRenderTo)][getDisplayY(screenToRenderTo)]=charRepresentation[0][0];
-        }else{
+        try {
+            if (bounds[0] == 1 && bounds[1] == 1) {
+                screenToRenderTo[getDisplayX(screenToRenderTo)][getDisplayY(screenToRenderTo)] = charRepresentation[0][0];
+            } else {
+
+            }
+        }catch(ArrayIndexOutOfBoundsException ignored){
 
         }
     }
