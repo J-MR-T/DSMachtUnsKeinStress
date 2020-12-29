@@ -148,6 +148,7 @@ public class Updater {
                     }
                     Var.gameState= EVADING_FORMULAS;
                     Var.formulas.remove(Var.hitFormulaIndex);
+                    Var.r.renderFrame();
                 }catch (NumberFormatException e){
                     try {
                         Audio.play(new URL("https://github.com/J-MR-T/UnicodeRenderer/raw/master/src/main/resources/sounds/betrugsversuch.wav"));
@@ -160,6 +161,8 @@ public class Updater {
                     } catch (MalformedURLException e2) {
                         throw new RuntimeException(e2);
                     }
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
                 }
             }
             case MENU -> {
