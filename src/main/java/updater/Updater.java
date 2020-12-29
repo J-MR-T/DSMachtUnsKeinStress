@@ -74,7 +74,7 @@ public class Updater {
                         try {
                             Audio.play(new URL("res://sounds/betrugsversuch.wav"));
                         } catch (MalformedURLException e) {
-                            throw new RuntimeException(e);
+//                            throw new RuntimeException(e);
                         }
                         return;
                     }

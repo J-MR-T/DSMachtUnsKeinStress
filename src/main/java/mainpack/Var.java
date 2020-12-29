@@ -42,5 +42,5 @@ public class Var {
 
     public static int formulaFrequency = 3; //Frequency of the Formula moving -  higher the slower
 
-    public static DisplayObjects[][] formulaDisplay = new DisplayObjects[][]{{DisplayObjects.FORMULA_SIGN}};
+    public static DisplayObjects[][] formulaDisplay = new DisplayObjects[][]{{DisplayObjects.DOWNWARD_TRIANGLE}};
 }
