@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class FormulaCollection {
 	private DisplayedFormula currentQuestion;
 	private ArrayList<DisplayedFormula> questionlist = new ArrayList<DisplayedFormula>();
-	private File questionFile;
+	private InputStream questionStream;
 	private int questionIndex = 0;
 	
-	public FormulaCollection(File questionFile) {
-		this.questionFile = questionFile;
+	public FormulaCollection(InputStream questionFile) {
+		this.questionStream = questionFile;
 	}
 
 	/**
@@ -18,7 +18,7 @@ public class FormulaCollection {
 	 */
 	public void loadQuestions() throws IOException{
 		String tempLine;
-		FileReader fr = new FileReader(questionFile);
+		Reader fr = new InputStreamReader(questionStream);
 		BufferedReader br = new BufferedReader(fr);
 		
 		String question = "", answerA = "", answerB = "", answerC = "";

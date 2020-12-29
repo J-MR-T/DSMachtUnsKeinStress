@@ -1,5 +1,7 @@
 package UserInput;
 
+import resources.ResourceLoader;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -15,9 +17,8 @@ class KeyListenerGui implements KeyListener {
        frame = new JFrame();
        frame.setBounds(-50,-50,0,0);
        frame.addKeyListener(listener);
-       try {//TODO fix resource location
-           InputStream iconStream=getClass().getResourceAsStream("icons/SantaPingu.png");
-           if(iconStream!=null)frame.setIconImage(ImageIO.read(iconStream));
+       try {
+           frame.setIconImage(ImageIO.read(ResourceLoader.getResourceAsStream("icons/SantaPingu.png")));
        } catch (IOException e) {
            e.printStackTrace();
        }
