@@ -14,7 +14,7 @@ import java.util.stream.IntStream;
 
 public class FormulaParser {
 
-    public class ParsingAnswer{
+    public static class ParsingAnswer{
         public String answer;
         public boolean result;
         Answer toAnswer(){
@@ -26,7 +26,7 @@ public class FormulaParser {
         public String question;
         public ParsingAnswer[] answers;
         DisplayedFormula toFormula(int difficulty){
-            return new DisplayedFormula(question, Arrays.stream(answers).map(ParsingAnswer::toAnswer).toArray(Answer[]::new));
+            return new DisplayedFormula(question, Arrays.stream(answers).map(ParsingAnswer::toAnswer).toArray(Answer[]::new),difficulty);
         }
     }
 
