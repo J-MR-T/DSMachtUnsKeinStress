@@ -12,7 +12,7 @@ public class Updater {
     private static int spawnRate;
     private static int stepsSinceStageTrigger = 0;
 
-    public static void update() {
+    public static void update() throws InterruptedException {
         Var.player.update();
         for (int i = 0; i < Var.formulas.size(); i++) {
             Formula formula = Var.formulas.get(i);

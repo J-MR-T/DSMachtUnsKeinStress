@@ -1,9 +1,7 @@
 package entities;
-
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
-
-public class DisplayedFormula {
+class DisplayedFormula {
     private String question;
 
     public Answer[] getAnswers() {
@@ -53,10 +51,10 @@ public class DisplayedFormula {
     public String toString() {
         StringBuilder returnVal = new StringBuilder();
         returnVal.append(question).append("\n\n");
-        char questionNumber = 'A';
         AtomicInteger index = new AtomicInteger();
+        index.getAndIncrement();
         Arrays.stream(answers).forEach(e -> {
-            returnVal.append((char) (questionNumber + index.get())).
+            returnVal.append(index.get()).
                     append(": ").append(e.getAnswerString()).append("\n");
             index.getAndIncrement();
         });

@@ -37,7 +37,7 @@ public class Renderer {
         return screens.size() > 0 ? screens.get(screens.size() - 1) : null;
     }
 
-    public void renderFrame() {
+    public void renderFrame() throws InterruptedException {
         StringBuilder s = new StringBuilder();
         //Add as many empty lines as needed
         s.append("\n".repeat(30));
@@ -61,6 +61,15 @@ public class Renderer {
             Formula hit = Var.formulas.get(Var.hitFormulaIndex);
             s.append(hit);
             //TODO warten bis formula gelöst ist
+        }else if(Var.gameState==StateEnum.MENU.ordinal()){
+            StringBuilder builder = new StringBuilder();
+
+            String string = builder.toString();
+            for (int i = 0; i < s.length(); i++) {
+                System.out.print(s.charAt(i));
+                Thread.sleep(10);
+            }
+            return;
         }
         System.out.println(s.toString());
     }
