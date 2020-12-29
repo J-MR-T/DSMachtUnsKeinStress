@@ -30,20 +30,20 @@ public class Main {
 
     private static void showStoryLine(){
         System.out.println("So...");
-        sleep(800);
-        slowPrint("you want to walk the path of excellence.\n", 900);
-        sleep(100);
+        sleep(1200);
+        slowPrint("you want to walk the path of excellence.", 900);
+        sleep(500);
         System.out.println("Good.");
-        sleep(140);
-        System.out.println("But first you need to survive");
-        sleep(600);
-        slowPrint("-> DISKRETE STRUKTUREN <-", 1200);
+        sleep(700);
+        System.out.println("But first you need to survive.\n");
+        sleep(1500);
+        slowPrint("-> DISKRETE STRUKTUREN <-", 3500);
         sleep(800);
         System.out.println("WASD to move");
         System.out.println("evade the formulas");
-        sleep(800);
+        sleep(2000);
         System.out.println("GO!");
-        sleep(500);
+        sleep(700);
     }
 
     private static void sleep(long millies) {
@@ -59,9 +59,10 @@ public class Main {
         char[] textArr = text.toCharArray();
         int timeBetweenChars =  totalTime / textArr.length;
         for(char charToPrint : textArr){
-            System.out.println(charToPrint);
+            System.out.print(charToPrint);
             sleep(timeBetweenChars);
         }
+        System.out.print("\n");
     }
 
 }
