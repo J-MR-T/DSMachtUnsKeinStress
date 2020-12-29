@@ -6,10 +6,10 @@ import mainpack.Var;
 
 public class Updater {
 
-    static float percMedium;
-    static float percHard;
-    static int durationOfStage;
-    static int spawnRate;
+    private static float percMedium;
+    private static float percHard;
+    private static int durationOfStage;
+    private static int spawnRate;
     private static int stepsSinceStageTrigger = 0;
 
     public static void update() {
@@ -33,20 +33,23 @@ public class Updater {
         Var.r.resetEntityLayer();
 
         //Spawning of new Entities
-        if(stepsSinceStageTrigger>=durationOfStage){
+        if (stepsSinceStageTrigger >= durationOfStage) {
             //returns to old spawning pattern
             durationOfStage = Integer.MAX_VALUE;
             stepsSinceStageTrigger = Integer.MIN_VALUE;
             //ruft jetzt den reset auf
         }
     }
-    static void setSpawningParameters(float percMedium, float percHard, int durationOfStage, int spawnRate){
-        stepsSinceStageTrigger = 0;
-        percMedium = percMedium;
-        percHard = percHard;
-        durationOfStage = durationOfStage;
-        spawnRate = spawnRate;
 
+    static void setSpawningParameters(float pPercMedium, float pPercHard, int pDurationOfStage, int pSpawnRate) {
+        stepsSinceStageTrigger = 0;
+        percMedium = pPercMedium;
+        percHard = pPercHard;
+        durationOfStage = pDurationOfStage;
+        spawnRate = pSpawnRate;
     }
 
+    public static void triggerKurztest() {
+        setSpawningParameters(0.5f,0.3f,(int)Var.KURZTEST_DURATION,9999);
+    }
 }

@@ -28,13 +28,9 @@ public class GameTimer extends Timer {
      */
     private static void runExam(){
         //LUTTI APPROACHES
-        setSpawnParams(0.5f, 0.5f, 300, 8); //TODO playtest and determine values
+        Updater.setSpawningParameters(0.5f, 0.5f, 300, 8); //TODO playtest and determine values
     }
 
-
-    private void setSpawnParams(float percMedium, float percHard, long durationOfStage, int spawnRate) {
-
-    }
     /*
      * Runs the next stage
      */
@@ -45,6 +41,7 @@ public class GameTimer extends Timer {
                 public void run() {
                     Var.gameState= StateEnum.KURZTEST.ordinal();
                     Var.gameStage++;
+                    Updater.triggerKurztest();
                 }
             }, Var.TIME_BETWEEN_KURZTESTS);
         }else{
