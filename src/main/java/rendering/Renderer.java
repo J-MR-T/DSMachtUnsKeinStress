@@ -59,7 +59,7 @@ public class Renderer {
         }else if(Var.gameState==Var.HIT_BY_FORMULA&&Var.hitFormulaIndex!=-1){
             Formula hit = Var.formulas.get(Var.hitFormulaIndex);
             s.append(hit);
-            //TODO warte
+            //TODO warten bis formula gelöst ist
         }
         System.out.println(s.toString());
     }

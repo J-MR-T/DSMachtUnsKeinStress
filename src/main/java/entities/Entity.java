@@ -89,7 +89,7 @@ public abstract class Entity {
         if(bounds[0]==1&&bounds[1]==1){
             screenToRenderTo[getDisplayX(screenToRenderTo)][getDisplayY(screenToRenderTo)]=charRepresentation[0][0];
         }else{
-            //TODO
+
         }
     }
 
