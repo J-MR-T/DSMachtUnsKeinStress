@@ -17,7 +17,7 @@ public class FormulaCollection {
 		this.hard=hard;
 	}
 	public static FormulaCollection getFormulas() throws FileSystemException {
-		return FormulaParser.parseFormulas(ResourceLoader.getResourceAsStream("Formulas.json"));
+		return FormulaParser.parseFormulas(ResourceLoader.getResourceAsStream("res://Formulas.json"));
 	}
 
 
