@@ -27,4 +27,9 @@ public class Var {
     public static int hitFormulaIndex = -1;
 
 
+    //default spawning rate
+    public static float defaultPercMedium = 0.4f;
+    public static float defaultPercHard = 0.0f;
+
+
 }

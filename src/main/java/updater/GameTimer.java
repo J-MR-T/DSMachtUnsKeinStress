@@ -21,6 +21,7 @@ public class GameTimer extends Timer {
     * Final Level
      */
     private static void runExam(){
+        //LUTTI APPROACHES
         setSpawnParams(0.5f, 0.5f, 300, 8); //TODO playtest and determine values
     }
 
