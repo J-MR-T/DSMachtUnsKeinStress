@@ -2,7 +2,7 @@ name: create release and upload artifacts
 on:
   push:
     tags:
-      - *
+      - "*"
 
 jobs:
   build:
