@@ -78,6 +78,12 @@ M := {1, 1, 2}. What is |P(M)|?
 (T) 4
 
 
+partial orders are
+(F) symmetric
+(T) reflexive
+(T) transitive
+
+
 ****************
 Hard
 ****************
