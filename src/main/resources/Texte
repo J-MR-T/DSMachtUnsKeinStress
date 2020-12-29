@@ -29,11 +29,6 @@ Press A, B, or C to proceed:
 Insufficient.
 
 
-// Alternative when player gives the wrong answer
-
-Less than excellent.
-
-
 // When player takes too long to answer
 
 Submission deadline! No Submission uploaded.
@@ -97,13 +92,26 @@ KURZTEST coming up
 
 
 // Boss Fight
+// Lutti ASCII einblenden
 
-Lutti
+ALERT:
+Exam day has approached
 
 
 // Random 15% chance to still lose the game after beating it
 
+/~\_/~\_/~\ ÜL OPEN UP! /~\_/~\_/~\
+
 Plagiarism detected!
+
+Dear contestant,
+we have received notice of your BETRUGSVERSUCH. We are shocked and sad.
+The character limit for defending yourself has been set to -1.
+Without loss of generality, it can be said that:
+
+You lose.
+
+GAME OVER
 
 
 
