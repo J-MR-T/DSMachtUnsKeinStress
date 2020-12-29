@@ -38,7 +38,7 @@ An equivalence relation is
 (T) transitive, maybe?
 
 
-A bipartite graph
+A bipartite simple graph
 (T) does not contain a circle of uneven length.
 (F) cannot contain a circle.
 (F) is best drawn in red.
@@ -48,6 +48,12 @@ A Hasse diagram of a partial order relation
 (T) does not show edges that can be derived from reflexivity or transitivity.
 (F) is always ordered alphabetically.
 (F) must be a multigraph.
+
+
+What is true for every tree?
+(F) It has as many roots as leaves.
+(F) There is a bird sitting on it.
+(T) |E| = |V| - 1
 
 
 ****************
@@ -114,6 +120,12 @@ Let N be the natural numbers, and Q be the rational numbers. Which of these is t
 (F) |Q| = |P(Q)|
 
 
+(p -> q) V p
+(T) is true, if p is false.
+(F) is false, if q is false.
+(T) is true, if p is true.
+
+
 ****************
 Hard
 ****************
@@ -165,4 +177,15 @@ Which of these relations is transitive?
 (T) {(6,7), (6,8), (9,5)}
 (F) {(4,3), (3,3), (3,4)}
 
+
+How many functions f : [5] -> {4, 2} are there?
+(T) 32
+(F) 25
+(F) 64
+
+
+For which of these degree sequences does a simple graph with a Hamilton circle exist?
+(2,2,4,4,4)
+(1,1,2,2,2)
+(2,2,2,2,3,3)
 
