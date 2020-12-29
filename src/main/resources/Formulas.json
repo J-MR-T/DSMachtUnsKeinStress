@@ -1,0 +1,57 @@
+{
+  "easy": [
+    {
+      "question": "How many (non-isomorphic) trees exist for the degree sequence (1,1,1,1,4)?",
+      "answers": [
+        {
+          "answer": "1",
+          "result": true
+        },
+        {
+          "answer": "11114",
+          "result": false
+        },
+        {
+          "answer": "Love the trees until their leaves fall off, then encourage them to try again next year.",
+          "result": false
+        }
+      ]
+    }
+  ],
+  "medium": [
+    {
+      "question": "Is {} a subset of {}?",
+      "answers": [
+        {
+          "answer": "Yes.",
+          "result": true
+        },
+        {
+          "answer": "Yes, but no.",
+          "result": false
+        },
+        {
+          "answer": "No.",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "{d,s} \b {d,e,s,p,a,i,r} = ?",
+      "answers": [
+        {
+          "answer": "{f,u,n}",
+          "result": false
+        },
+        {
+          "answer": "{}",
+          "result": true
+        },
+        {
+          "answer": "{d,s}",
+          "result": false
+        }
+      ]
+    }
+  ]
+}
