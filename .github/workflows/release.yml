@@ -1,0 +1,51 @@
+name: create release and upload artifacts
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 15
+        uses: actions/setup-java@v1
+        with:
+          java-version: 15
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: buid project
+        run: ./gradlew build
+      - name: create release
+        id: release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: "[TODO]"
+          draft: true
+          prerelease: false
+      - name: upload zip
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./build/distributions/ds-invader.zip
+          asset_name: ds-invader.zip
+          asset_content_type: application/zip
+      - name: compress bin archive
+        run: zstd -19 ./build/distributions/ds-invader.tar
+      - name: upload tarball
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./build/distributions/ds-invader.tar.zst
+          asset_name: ds-invader.tar.zst
+          asset_content_type: application/zstd
