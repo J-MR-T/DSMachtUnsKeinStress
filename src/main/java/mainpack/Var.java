@@ -1,6 +1,7 @@
 package mainpack;
 
 import entities.Formula;
+import entities.FormulaCollection;
 import entities.Player;
 import rendering.Renderer;
 import updater.GameTimer;
@@ -27,6 +28,7 @@ public class Var {
     public static Player player = null;
     public static List<Formula> formulas;
     public static int hitFormulaIndex = -1;
+    public static FormulaCollection formCollection;
 
 
     //default spawning rate

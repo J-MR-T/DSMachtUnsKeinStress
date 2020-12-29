@@ -5,10 +5,12 @@ import mainpack.Var;
 
 public class Formula extends Entity {
     private DisplayedFormula displayForm;
+    private int difficulty;
 
-    public Formula(int[] pos, DisplayObjects[][] charRepresentation, int[] bounds, int frequency) {
+    public Formula(int[] pos, DisplayObjects[][] charRepresentation, int[] bounds, int frequency, int difficulty) {
         super(pos, charRepresentation, bounds, frequency);
         displayForm = null;
+        this.difficulty=difficulty;
     }
 
     public Formula(int[] pos, DisplayObjects[][] charRepresentation, int[] bounds, int frequency, DisplayedFormula displayForm) {
@@ -24,6 +26,10 @@ public class Formula extends Entity {
     @Override
     public void updateInner() {
 
+    }
+
+    public void hit(){
+        displayForm=Var.formCollection.getRandomFormula(difficulty);
     }
 
     public String toString() {

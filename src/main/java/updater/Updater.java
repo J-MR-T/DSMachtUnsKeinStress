@@ -2,10 +2,12 @@ package updater;
 
 import UserInput.KeyListener;
 import entities.Formula;
+import entities.FormulaCollection;
 import entities.Player;
 import mainpack.StageEnum;
 import mainpack.StateEnum;
 import mainpack.Var;
+import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -29,8 +31,9 @@ public class Updater {
         updated.set(true);
     }
 
-    public static void run(boolean forceGui){
+    public static void run(boolean forceGui) throws FileSystemException {
         Var.player=new Player(new int[]{1,Var.height-2},new DisplayObjects[][]{{DisplayObjects.BLOCK}},new int[]{1,1},3);
+        Var.formCollection= FormulaCollection.getFormulas();
         timer=new GameTimer();
         keys= KeyListener.getKeyListener(Updater::update,forceGui);
         timer.triggerWaitingForNextStage();
@@ -64,49 +67,45 @@ public class Updater {
                     //Not sure if this can be done in one go
                     formula.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
                 }
+                for (int i = 0; i < Var.formulas.size(); i++) {
+                    if (Var.player.collidesWith(Var.formulas.get(i))) {
+                        //Hit by formula
+                        Var.gameState = StateEnum.HIT_BY_FORMULA;
+                        Var.hitFormulaIndex = i;
+                    }
+                }
+                Var.player.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
+                try {
+                    Var.r.renderFrame();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                Var.r.resetEntityLayer();
+
+                //Spawning of new Entities
+                if (stepsSinceStageTrigger >= durationOfStage) {
+                    //returns to old spawning pattern
+                    durationOfStage = Integer.MAX_VALUE;
+                    stepsSinceStageTrigger = Integer.MIN_VALUE;
+
+                    percMedium = Var.defaultPercMedium;
+                    percHard = Var.defaultPercHard;
+                    spawnRate = Var.defaultSpawnRate;
+                    //ruft den neuen Timer auf
+                    Var.timer.triggerWaitingForNextStage();
+                }
+                if (Var.gameState==StateEnum.HIT_BY_FORMULA){
+                    Var.formulas.get(Var.hitFormulaIndex).hit();
+                }
+
+                //Spawn jetzt
+
+
+                durationOfStage++;
             }
         }
 
-        Var.player.setMovement(input).update();
-        for (int i = 0; i < Var.formulas.size(); i++) {
-            Formula formula = Var.formulas.get(i);
-            formula.update();
-            //Not sure if this can be done in one go
-            formula.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
-        }
-        for (int i = 0; i < Var.formulas.size(); i++) {
-            if (Var.player.collidesWith(Var.formulas.get(i))) {
-                //Hit by formula
-                Var.gameState = StateEnum.HIT_BY_FORMULA.ordinal();
-                Var.hitFormulaIndex = i;
-            }
-        }
-        Var.player.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
 
-        try {
-            Var.r.renderFrame();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        Var.r.resetEntityLayer();
-
-        //Spawning of new Entities
-        if (stepsSinceStageTrigger >= durationOfStage) {
-            //returns to old spawning pattern
-            durationOfStage = Integer.MAX_VALUE;
-            stepsSinceStageTrigger = Integer.MIN_VALUE;
-
-            percMedium = Var.defaultPercMedium;
-            percHard = Var.defaultPercHard;
-            spawnRate = Var.defaultSpawnRate;
-            //ruft den neuen Timer auf
-            Var.timer.triggerWaitingForNextStage();
-        }
-
-        //Spawn jetzt
-
-
-        durationOfStage++;
     }
 
     static void setSpawningParameters(float pPercMedium, float pPercHard, int pDurationOfStage, int pSpawnRate) {
