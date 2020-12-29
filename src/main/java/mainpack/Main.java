@@ -1,8 +1,10 @@
 package mainpack;
 
 import UserInput.Initializer;
+import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 import rendering.Renderer;
+import updater.Updater;
 
 import javax.imageio.ImageIO;
 import javax.naming.SizeLimitExceededException;
@@ -12,7 +14,7 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileSystemException {
         showStoryLine();
 //        try {
 //            Initializer.initialize();
@@ -27,6 +29,7 @@ public class Main {
         int[] playerPos = {1, 1};
         System.out.println(r.screens.size());
         r.renderFrame();
+        Updater.run(true);
     }
 
     private static void showStoryLine() {
