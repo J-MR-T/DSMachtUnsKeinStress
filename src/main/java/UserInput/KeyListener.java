@@ -4,8 +4,8 @@ import com.sun.jna.Platform;
 
 public interface KeyListener extends AutoCloseable{
 
-    static KeyListener getKeyListener(CharConsumer c) {
-        if(!Platform.isLinux()||Platform.isGNU())return new KeyListenerWindows(c);
+    static KeyListener getKeyListener(CharConsumer c, boolean forceGui) {
+        if(forceGui||!(Platform.isLinux()||Platform.isGNU()))return new KeyListenerGui(c);
     for (String name :new String[]{"ncurses","ncursest","ncursesw","ncursestw"}
         ) {
             try {
@@ -15,7 +15,7 @@ public interface KeyListener extends AutoCloseable{
             }
 
         }
-    return new KeyListenerWindows(c);
+    return new KeyListenerGui(c);
     }
 
 

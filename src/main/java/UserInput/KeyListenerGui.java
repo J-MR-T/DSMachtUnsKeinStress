@@ -4,26 +4,29 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.io.InputStream;
 
-class KeyListenerWindows implements KeyListener {
+class KeyListenerGui implements KeyListener {
 
     private final JFrame frame;
     private final KeyListenerImpl listener;
-    KeyListenerWindows(CharConsumer c){
+    KeyListenerGui(CharConsumer c){
        listener=new KeyListenerImpl(c);
        frame = new JFrame();
        frame.setBounds(-50,-50,0,0);
        frame.addKeyListener(listener);
-       try {
-           frame.setIconImage(ImageIO.read(getClass().getResourceAsStream("SantaPingu.png")));
+       try {//TODO fix resource location
+           InputStream iconStream=getClass().getResourceAsStream("icons/SantaPingu.png");
+           if(iconStream!=null)frame.setIconImage(ImageIO.read(iconStream));
        } catch (IOException e) {
            e.printStackTrace();
        }
+       frame.setVisible(true);
        frame.requestFocus();
    }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         frame.dispose();
     }
 
