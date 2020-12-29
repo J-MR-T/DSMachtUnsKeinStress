@@ -135,6 +135,7 @@ public class Updater {
 
                     }
                     Var.gameState= EVADING_FORMULAS;
+                    Var.formulas.remove(Var.hitFormulaIndex);
                 }catch (NumberFormatException e){
                     try {
                         Audio.play(new URL("res://sounds/betrugsversuch.wav"));
