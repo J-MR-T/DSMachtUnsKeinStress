@@ -24,14 +24,12 @@ public class ResourceLoader {
         return resRoot;
     }
 
-    public static FileObject getResource(String path) throws FileSystemException {
-        var res = getResRoot().getChild(path);
-        if (res == null) throw new FileNotFoundException(path);
-        else return res;
+    public static FileObject getResource(String url) throws FileSystemException {
+        return getManager().resolveFile(url);
     }
 
-    public static InputStream getResourceAsStream(String path) throws FileSystemException {
-        return getResource(path).getContent().getInputStream();
+    public static InputStream getResourceAsStream(String url) throws FileSystemException {
+        return getResource(url).getContent().getInputStream();
     }
 
 

@@ -18,7 +18,7 @@ class KeyListenerGui implements KeyListener {
        frame.setBounds(-50,-50,0,0);
        frame.addKeyListener(listener);
        try {
-           frame.setIconImage(ImageIO.read(ResourceLoader.getResourceAsStream("icons/SantaPingu.png")));
+           frame.setIconImage(ImageIO.read(ResourceLoader.getResourceAsStream("res://icons/SantaPingu.png")));
        } catch (IOException e) {
            e.printStackTrace();
        }
