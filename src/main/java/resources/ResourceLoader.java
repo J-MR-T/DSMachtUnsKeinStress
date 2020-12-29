@@ -3,12 +3,17 @@ package resources;
 import org.apache.commons.vfs2.*;
 
 import java.io.InputStream;
+import java.net.URI;
+import java.net.URL;
 
 public class ResourceLoader {
     private static FileSystemManager manager = null;
 
     private static FileSystemManager getManager() throws FileSystemException {
-        if (manager == null) manager = VFS.getManager();
+        if (manager == null) {
+            manager = VFS.getManager();
+            URL.setURLStreamHandlerFactory(manager.getURLStreamHandlerFactory());
+        }
         return manager;
     }
 

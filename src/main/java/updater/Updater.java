@@ -1,6 +1,7 @@
 package updater;
 
 import UserInput.KeyListener;
+import audioOutput.Audio;
 import entities.Formula;
 import entities.FormulaCollection;
 import entities.Player;
@@ -10,6 +11,8 @@ import mainpack.Var;
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static mainpack.StateEnum.EVADING_FORMULAS;
@@ -60,6 +63,17 @@ public class Updater {
 
         switch (Var.gameState) {
             case EVADING_FORMULAS, KURZTEST, BOSS -> {
+                switch (input){
+                    case 'w','a','s','d',' '->{}
+                    default -> {
+                        try {
+                            Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                        } catch (MalformedURLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        return;
+                    }
+                }
                 Var.player.setMovement(input).update();
                 for (int i = 0; i < Var.formulas.size(); i++) {
                     Formula formula = Var.formulas.get(i);
@@ -102,6 +116,12 @@ public class Updater {
 
 
                 stepsSinceStageTrigger++;
+            }
+            case HIT_BY_FORMULA -> {
+
+            }
+            case MENU -> {
+
             }
         }
     }
