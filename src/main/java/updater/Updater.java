@@ -7,6 +7,9 @@ import entities.Player;
 import mainpack.StageEnum;
 import mainpack.StateEnum;
 import mainpack.Var;
+import rendering.DisplayObjects;
+
+import java.util.function.Function;
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 
@@ -82,6 +85,10 @@ public class Updater {
                 }
                 Var.r.resetEntityLayer();
 
+                if (Var.gameState == StateEnum.HIT_BY_FORMULA) {
+                    Var.formulas.get(Var.hitFormulaIndex).hit();
+                }
+
                 //Spawning of new Entities
                 if (stepsSinceStageTrigger >= durationOfStage) {
                     //returns to old spawning pattern
@@ -94,12 +101,15 @@ public class Updater {
                     //ruft den neuen Timer auf
                     Var.timer.triggerWaitingForNextStage();
                 }
-                if (Var.gameState == StateEnum.HIT_BY_FORMULA) {
-                    Var.formulas.get(Var.hitFormulaIndex).hit();
-                }
+
 
                 //Spawn jetzt
-
+                int entitiesToSpawn = spawnRate;
+                for (int i = 0; i < entitiesToSpawn; i++) {
+                    //lets generate a random x for the coord of the Formula
+                     Formula newFormula = new Formula(new int[]{randomX(), 0}, Var.formulaDisplay, new int[]{1,1}, Var.formulaFrequency, randomDifficulty());
+                     Var.formulas.add(newFormula);
+                }
 
                 stepsSinceStageTrigger++;
             }
@@ -128,5 +138,11 @@ public class Updater {
 
     public static void triggerBoss(){
 
+    }
+    private static int randomX() {
+        return (int) ((Math.random() * Var.width));
+    }
+    private static int randomDifficulty() {
+        return (int) ((Math.random() * (2)));
     }
 }

@@ -3,6 +3,7 @@ package mainpack;
 import entities.Formula;
 import entities.FormulaCollection;
 import entities.Player;
+import rendering.DisplayObjects;
 import rendering.Renderer;
 import updater.GameTimer;
 
@@ -36,4 +37,7 @@ public class Var {
     public static float defaultPercHard = 0.0f;
     public static int defaultSpawnRate = 2;
 
+    public static int formulaFrequency = 3; //Frequency of the Formula moving -  higher the slower
+
+    public static DisplayObjects[][] formulaDisplay = new DisplayObjects[][]{{DisplayObjects.FORMULA_SIGN}};
 }
