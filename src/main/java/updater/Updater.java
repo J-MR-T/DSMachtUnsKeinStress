@@ -201,7 +201,7 @@ public class Updater {
         int[] coords = new int[]{randomX(), 0};
         //lets check if there is already a formula there
         for (int j = Var.formulas.size()-1; j >= 0; j--) {
-            if(Var.formulas.get(j).getX()==coords[0])return getRandomCoordsOnTop(); //Recursively find new coords
+            if(Var.formulas.get(j).getX()==coords[0]) return getRandomCoordsOnTop(); //Recursively find new coords
             if(Var.formulas.get(j).getY()>0){
                 break; //We can skip looking since from now on all formulas will be below
             }

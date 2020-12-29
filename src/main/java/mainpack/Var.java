@@ -7,6 +7,7 @@ import rendering.DisplayObjects;
 import rendering.Renderer;
 import updater.GameTimer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Var {
@@ -29,7 +30,7 @@ public class Var {
 
 
     public static Player player = null;
-    public static List<Formula> formulas;
+    public static List<Formula> formulas = new ArrayList<>();
     public static int hitFormulaIndex = -1;
     public static FormulaCollection formCollection;
 

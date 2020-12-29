@@ -44,6 +44,7 @@ public enum DisplayObjects {
         CORNER_LOW_RIGHT.asChar = CORNER_UP_LEFT.asChar = '/';
         CORNER_LOW_LEFT.asChar = CORNER_UP_RIGHT.asChar = '\\';
         BLOCK.asChar = '|';
+        DOWNWARD_TRIANGLE.asChar = 'v';
     }
 
     DisplayObjects(char asChar) {
