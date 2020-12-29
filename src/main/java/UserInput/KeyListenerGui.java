@@ -24,6 +24,7 @@ class KeyListenerGui implements KeyListener {
        }
        frame.setVisible(true);
        frame.requestFocus();
+       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    }
 
     @Override
