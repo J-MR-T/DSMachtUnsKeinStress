@@ -1,15 +1,12 @@
 package entities;
 
-public class DisplayedFormula {
+class DisplayedFormula {
 	private String question, answerA, answerB, answerC;
 	private boolean aTrue, bTrue, cTrue;
 	private int difficulty;
+
 	
-	
-	
-	
-	
-	public DisplayedFormula(String question, String answerA, String answerB, String answerC, boolean aTrue,
+	DisplayedFormula(String question, String answerA, String answerB, String answerC, boolean aTrue,
 			boolean bTrue, boolean cTrue, int difficulty) {
 		
 		this.question = question;
@@ -23,24 +20,21 @@ public class DisplayedFormula {
 	}
 	
 	public boolean answerFormula(char answer) {
-		switch (answer) {
-			case 'a': return aTrue;
-			case 'b': return bTrue;
-			case 'c': return cTrue;
-			case 'A': return aTrue;
-			case 'B': return bTrue;
-			case 'C': return cTrue;
-		}
-		return false;
+		return switch (Character.toLowerCase(answer)) {
+			case 'a' -> aTrue;
+			case 'b' -> bTrue;
+			case 'c' -> cTrue;
+			default -> false;
+		};
 	}
 	
 	public boolean answerFormula(int answer) {
-		switch (answer) {
-			case 1: return aTrue;
-			case 2: return bTrue;
-			case 3: return cTrue;
-		}
-		return false;
+		return switch (answer) {
+			case 1 -> aTrue;
+			case 2 -> bTrue;
+			case 3 -> cTrue;
+			default -> false;
+		};
 	}
 	
 	public String getQuestion() {

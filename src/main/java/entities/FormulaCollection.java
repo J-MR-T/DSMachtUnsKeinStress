@@ -6,7 +6,7 @@ public class FormulaCollection {
 	private DisplayedFormula currentQuestion;
 	private ArrayList<DisplayedFormula> questionlist = new ArrayList<DisplayedFormula>();
 	private File questionFile;
-	private int currentquestion = 0;
+	private int questionIndex = 0;
 	
 	public FormulaCollection(File questionFile) {
 		this.questionFile = questionFile;
@@ -33,36 +33,42 @@ public class FormulaCollection {
 			for(int i = 0; i < tempLine.length(); i++) {
 				if (tempLine.charAt(i) == '$') {
 					switch (counter) {
-						case 0: aTrue = true;
-								question = tempLine.substring(0, i-1);
-								subStringStart = i+1;
-								break;
-						case 1: bTrue = true;
-								answerA = tempLine.substring(subStringStart, i-1);
-								subStringStart = i+1;
-								break;
-						case 2: cTrue = true;
-								answerB = tempLine.substring(subStringStart, i-1);
-								subStringStart = i+1;
-								i = tempLine.length();
-								break;
+						case 0 -> {
+							aTrue = true;
+							question = tempLine.substring(0, i - 1);
+							subStringStart = i + 1;
+						}
+						case 1 -> {
+							bTrue = true;
+							answerA = tempLine.substring(subStringStart, i - 1);
+							subStringStart = i + 1;
+						}
+						case 2 -> {
+							cTrue = true;
+							answerB = tempLine.substring(subStringStart, i - 1);
+							subStringStart = i + 1;
+							i = tempLine.length();
+						}
 					}
 					
-				} else if(tempLine.charAt(i) == 'ง') {
+				} else if(tempLine.charAt(i) == 'ยง') {
 					switch (counter) {
-						case 0: aTrue = true;
-								question = tempLine.substring(0, i-1);
-								subStringStart = i+1;
-								break;
-						case 1: bTrue = true;
-								answerA = tempLine.substring(subStringStart, i-1);
-								subStringStart = i+1;
-								break;
-						case 2: cTrue = true;
-								answerB = tempLine.substring(subStringStart, i-1);
-								subStringStart = i+1;
-								i = tempLine.length();
-								break;
+						case 0 -> {
+							aTrue = true;
+							question = tempLine.substring(0, i - 1);
+							subStringStart = i + 1;
+						}
+						case 1 -> {
+							bTrue = true;
+							answerA = tempLine.substring(subStringStart, i - 1);
+							subStringStart = i + 1;
+						}
+						case 2 -> {
+							cTrue = true;
+							answerB = tempLine.substring(subStringStart, i - 1);
+							subStringStart = i + 1;
+							i = tempLine.length();
+						}
 					}
 						
 				}
@@ -84,7 +90,7 @@ public class FormulaCollection {
 	}
 	
 	public DisplayedFormula getNextFormula() {
-		currentQuestion = questionlist.get(currentquestion++ % (questionlist.size()-1));
+		currentQuestion = questionlist.get(questionIndex++ % (questionlist.size()-1));
 		return currentQuestion;
 	}
 	

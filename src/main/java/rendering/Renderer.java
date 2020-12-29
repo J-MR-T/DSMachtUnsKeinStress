@@ -3,6 +3,7 @@ package rendering;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
+import rendering.DisplayObjects;
 
 public class Renderer {
     public ArrayList<DisplayObjects[][]> screens;
@@ -39,8 +40,12 @@ public class Renderer {
             for (int x = 0; x < width; x++) {
                 for (int i = screens.size() - 1; i >= 0; i++) {
                     DisplayObjects[][] screen = screens.get(i);
-                    if (screen[x][y] != DisplayObjects.SPACE || i == 0) {
-                        s.append(screen[x][y]);
+                    if (screen[x][y] != DisplayObjects.EMPTY || i == 0) {
+                        if(i!=0){
+                            s.append(screen[x][y]);
+                        }else{
+                            s.append(DisplayObjects.SPACE);
+                        }
                     }
                 }
             }
