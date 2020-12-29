@@ -40,7 +40,7 @@ public class Updater {
     }
 
     public static void run(boolean forceGui) throws FileSystemException {
-        Var.player=new Player(new int[]{1,Var.height-2},new DisplayObjects[][]{{DisplayObjects.BLOCK}},new int[]{1,1},3);
+        Var.player=new Player(new int[]{10,15},new DisplayObjects[][]{{DisplayObjects.BLOCK}},new int[]{1,1},3);
         Var.formCollection= FormulaCollection.getFormulas();
         timer=new GameTimer();
         keys= KeyListener.getKeyListener(Updater::update,forceGui);
@@ -145,13 +145,7 @@ public class Updater {
                     }
                     Var.gameState= EVADING_FORMULAS;
                     Var.formulas.remove(Var.hitFormulaIndex);
-                }catch (NumberFormatException e){
-                    try {
-                        Audio.play(new URL("res://sounds/betrugsversuch.wav"));
-                    } catch (MalformedURLException e2) {
-                        throw new RuntimeException(e2);
-                    }
-                }catch (IndexOutOfBoundsException e){
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     try {
                         Audio.play(new URL("res://sounds/betrugsversuch.wav"));
                     } catch (MalformedURLException e2) {
@@ -202,7 +196,7 @@ public class Updater {
     private static int[] getRandomCoordsOnTop(){
         //lets generate a random x for the coord of the Formula
         for (int i = 0; i < 10; i++) { //max 10 attempts
-            int[] coords = new int[]{randomX(), 0};
+            int[] coords = new int[]{randomX(), 1};
             boolean conflict = false;
             //lets check if there is already a formula there
             for (int j = Var.formulas.size()-1; j >= 0; j--) {
