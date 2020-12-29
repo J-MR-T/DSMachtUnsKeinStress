@@ -13,7 +13,6 @@ import rendering.DisplayObjects;
 
 import java.util.EventListener;
 import java.util.function.Function;
-
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 
@@ -32,27 +31,27 @@ public class Updater {
     private static int stepsSinceStageTrigger = 0;
     private static GameTimer timer;
     private static StageEnum stage;
-    private static AtomicBoolean updated = new AtomicBoolean(false);
+    private static AtomicBoolean updated=new AtomicBoolean(false);
     private static KeyListener keys;
 
-    static void setGameStage(StageEnum s) {
-        stage = s;
+    static void setGameStage(StageEnum s){
+        stage=s;
         updated.set(true);
     }
 
     public static void run(boolean forceGui) throws FileSystemException {
-        Var.player = new Player(new int[]{1, Var.height - 2}, new DisplayObjects[][]{{DisplayObjects.BLOCK}}, new int[]{1, 1}, 3);
-        Var.formCollection = FormulaCollection.getFormulas();
-        timer = new GameTimer();
-        keys = KeyListener.getKeyListener(Updater::update, forceGui);
+        Var.player=new Player(new int[]{10,15},new DisplayObjects[][]{{DisplayObjects.BLOCK}},new int[]{1,1},3);
+        Var.formCollection= FormulaCollection.getFormulas();
+        timer=new GameTimer();
+        keys= KeyListener.getKeyListener(Updater::update,forceGui);
         timer.triggerWaitingForNextStage();
     }
 
     public static void update(char input) {
 
-        if (updated.get()) {
-            switch (stage) {
-                case KURZTEST_1 -> {
+        if(updated.get()){
+            switch (stage){
+                case KURZTEST_1->{
                     triggerKurztest(1);
                 }
                 case KURZTEST_2 -> {
@@ -69,9 +68,8 @@ public class Updater {
 
         switch (Var.gameState) {
             case EVADING_FORMULAS, KURZTEST, BOSS -> {
-                switch (input) {
-                    case 'w', 'a', 's', 'd', ' ' -> {
-                    }
+                switch (input){
+                    case 'w','a','s','d',' '->{}
                     default -> {
                         try {
                             Audio.play(new URL("res://sounds/betrugsversuch.wav"));
@@ -127,29 +125,25 @@ public class Updater {
                 //Spawning now
                 int entitiesToSpawn = spawnRate;
                 for (int i = 0; i < entitiesToSpawn; i++) {
-                    try {
-                        Formula newFormula = new Formula(getRandomCoordsOnTop(), Var.formulaDisplay, new int[]{1, 1}, Var.formulaFrequency, randomDifficulty());
+                    int[] coords = getRandomCoordsOnTop();
+                    if(coords!=null){
+                        Formula newFormula = new Formula(coords, Var.formulaDisplay, new int[]{1,1}, Var.formulaFrequency, randomDifficulty());
                         Var.formulas.add(newFormula);
-                        System.out.println("Yess");
-                    } catch (StackOverflowError ignored) {
-                        //no new formula
-                        System.out.println("Nope");
                     }
-
                 }
 
                 stepsSinceStageTrigger++;
             }
             case HIT_BY_FORMULA -> {
-                try {
-                    var a = Var.formulas.get(Var.hitFormulaIndex).getDisplayForm().getAnswer(Integer.parseInt(String.valueOf(input)));
-                    if (a.isRight()) {
+                try{
+                    var a=Var.formulas.get(Var.hitFormulaIndex).getDisplayForm().getAnswer(Integer.parseInt(String.valueOf(input)));
+                    if(a.isRight()){
 
-                    } else {
-                        Var.player.setHp(Var.player.getHp() - 1);
+                    }else {
+                        Var.player.setHp(Var.player.getHp()-1);
 
                     }
-                    Var.gameState = EVADING_FORMULAS;
+                    Var.gameState= EVADING_FORMULAS;
                     Var.formulas.remove(Var.hitFormulaIndex);
                 } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     try {
@@ -189,28 +183,34 @@ public class Updater {
         }
     }
 
-    public static void triggerBoss() {
+    public static void triggerBoss(){
         setSpawningParameters(0.4f, 0.6f, (int) Var.EXAM_DURATION, 8); //TODO playtest and determine values
     }
-
     private static int randomX() {
         return (int) ((Math.random() * Var.width));
     }
-
     private static int randomDifficulty() {
         return (int) ((Math.random() * (2)));
     }
 
-    private static int[] getRandomCoordsOnTop() {
+    private static int[] getRandomCoordsOnTop(){
         //lets generate a random x for the coord of the Formula
-        int[] coords = new int[]{randomX(), 1};
-        //lets check if there is already a formula there
-        for (int j = Var.formulas.size() - 1; j >= 0; j--) {
-            if (Var.formulas.get(j).getX() == coords[0]) return getRandomCoordsOnTop(); //Recursively find new coords
-            if (Var.formulas.get(j).getY() > 0) {
-                break; //We can skip looking since from now on all formulas will be below
+        for (int i = 0; i < 10; i++) { //max 10 attempts
+            int[] coords = new int[]{randomX(), 0};
+            boolean conflict = false;
+            //lets check if there is already a formula there
+            for (int j = Var.formulas.size()-1; j >= 0; j--) {
+                if(Var.formulas.get(j).getX()==coords[0]) {
+                    conflict = true;
+                    break; //Recursively find new coords
+                    }
+                if(Var.formulas.get(j).getY()>0){
+                    break; //We can skip looking since from now on all formulas will be below
+                }
             }
+            if(!conflict)return coords;
         }
-        return coords;
+
+        return null;
     }
 }
