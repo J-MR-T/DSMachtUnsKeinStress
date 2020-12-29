@@ -58,8 +58,8 @@ public class Updater {
             }
         }
 
-        switch (Var.gameState){
-            case EVADING_FORMULAS, KURZTEST, BOSS->{
+        switch (Var.gameState) {
+            case EVADING_FORMULAS, KURZTEST, BOSS -> {
                 Var.player.setMovement(input).update();
                 for (int i = 0; i < Var.formulas.size(); i++) {
                     Formula formula = Var.formulas.get(i);
@@ -94,18 +94,16 @@ public class Updater {
                     //ruft den neuen Timer auf
                     Var.timer.triggerWaitingForNextStage();
                 }
-                if (Var.gameState==StateEnum.HIT_BY_FORMULA){
+                if (Var.gameState == StateEnum.HIT_BY_FORMULA) {
                     Var.formulas.get(Var.hitFormulaIndex).hit();
                 }
 
                 //Spawn jetzt
 
 
-                durationOfStage++;
+                stepsSinceStageTrigger++;
             }
         }
-
-
     }
 
     static void setSpawningParameters(float pPercMedium, float pPercHard, int pDurationOfStage, int pSpawnRate) {

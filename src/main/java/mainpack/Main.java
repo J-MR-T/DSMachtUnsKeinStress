@@ -14,17 +14,18 @@ import java.util.InputMismatchException;
 public class Main {
     public static void main(String[] args) throws InterruptedException {
         showStoryLine();
-        try {
-            Initializer.initialize();
-        } catch (IllegalStateException | InputMismatchException e) {
-            System.out.println("You have to enter useful values, you know? smh");
-            System.exit(0);
-        }
-        Renderer r = new Renderer(Initializer.getBoardWidth(), Initializer.getBoardHeight());
+//        try {
+//            Initializer.initialize();
+//        } catch (IllegalStateException | InputMismatchException e) {
+//            System.out.println("You have to enter useful values, you know? smh");
+//            System.exit(0);
+//        }
+        Renderer r = new Renderer(20, 20);
         r.fillWithEmptyFrame(r.peek());
 //        r.fillWithEmptyFrameThick();
         r.draw(new int[]{1, 1}, DisplayObjects.BLOCK, r.peek());
         int[] playerPos = {1, 1};
+        System.out.println(r.screens.size());
         r.renderFrame();
     }
 

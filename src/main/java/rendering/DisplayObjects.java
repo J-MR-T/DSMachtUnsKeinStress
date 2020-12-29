@@ -20,7 +20,8 @@ public enum DisplayObjects {
     CORNER_UP_LEFT('\u259B'),
     CORNER_UP_RIGHT('\u259C'),
     CORNER_LOW_LEFT('\u2599'),
-    CORNER_LOW_RIGHT('\u259F');
+    CORNER_LOW_RIGHT('\u259F'),
+    DOWNWARD_TRIANGLE('\u2BC6');
 
 
     public static DisplayObjects getRandomDisplayObject() {
