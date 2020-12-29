@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" build-on-make="true" name="UnicodeRenderer:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/UnicodeRenderer_jar</output-path>
-    <root id="archive" name="UnicodeRenderer.jar">
-      <element id="module-output" name="UnicodeRenderer" />
-      <element id="extracted-dir" path="$USER_HOME$/.m2/repository/org/jetbrains/annotations/20.1.0/annotations-20.1.0.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
