@@ -16,9 +16,162 @@
           "result": false
         }
       ]
+    },
+    {
+      "question": "Which of these is not a subset of {a,b,c}?",
+      "answers": [
+        {
+          "answer": "{n,e,v,e,r,g,i}",
+          "result": true
+        },
+        {
+          "answer": "{v,e,u,p,y,o,u}",
+          "result": true
+        },
+        {
+          "answer": "{g,o,t,t,h,i,s}",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "R := {(n,k), (k,o)}. R+ = ?",
+      "answers": [
+        {
+          "answer": "{(n,o,!)}",
+          "result": false
+        },
+        {
+          "answer": "{(n,k), (k,o), (n,o)}",
+          "result": true
+        },
+        {
+          "answer": "{(m,a), (y,b), (e,?)}",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "Which of these degree sequences can be realized as an undirected, simple graph?",
+      "answers": [
+        {
+          "answer": "(1,1,1,1)",
+          "result": true
+        },
+        {
+          "answer": "(2,2,2,2,2,2)",
+          "result": true
+        },
+        {
+          "answer": "(0,1,2,3,4,5)",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "What is the intersection of {{1,2},{1,3},{1,4}}?",
+      "answers": [
+        {
+          "answer": "Would it be a big problem if I forgot to sign my test?",
+          "result": false
+        },
+        {
+          "answer": "Red is an excellent color.",
+          "result": false
+        },
+        {
+          "answer": "{1}",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "An equivalence relation is",
+      "answers": [
+        {
+          "answer": "reflexive, of course.",
+          "result": true
+        },
+        {
+          "answer": "symmetric.",
+          "result": true
+        },
+        {
+          "answer": "transitive, maybe?",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "A bipartite simple graph",
+      "answers": [
+        {
+          "answer": "does not contain a circle of uneven length.",
+          "result": true
+        },
+        {
+          "answer": "cannot contain a circle.",
+          "result": false
+        },
+        {
+          "answer": "is best drawn in red.",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "A Hasse diagram of a partial order relation",
+      "answers": [
+        {
+          "answer": "does not show edges that can be derived from reflexivity or transitivity.",
+          "result": true
+        },
+        {
+          "answer": "is always ordered alphabetically.",
+          "result": false
+        },
+        {
+          "answer": "must be a multigraph.",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "What is true for every tree?",
+      "answers": [
+        {
+          "answer": "It has as many roots as leaves.",
+          "result": false
+        },
+        {
+          "answer": "There is a bird sitting on it.",
+          "result": false
+        },
+        {
+          "answer": "|E| = |V| - 1",
+          "result": true
+        }
+      ]
     }
   ],
   "medium": [
+    {
+      "question": "Can the degree sequence (2,2,2,4,4) be realized as a simple, undirected graph?",
+      "answers": [
+        {
+          "answer": "Yes.",
+          "result": true
+        },
+        {
+          "answer": "No.",
+          "result": false
+        },
+        {
+          "answer": "Maybe. I don't know. Can you repeat the question?",
+          "result": false
+        }
+      ]
+    },
     {
       "question": "Is {} a subset of {}?",
       "answers": [
@@ -37,7 +190,24 @@
       ]
     },
     {
-      "question": "{d,s} \b {d,e,s,p,a,i,r} = ?",
+      "question": "Which of these is not a subset of {1, 2, 3}?",
+      "answers": [
+        {
+          "answer": "{}",
+          "result": false
+        },
+        {
+          "answer": "{123}",
+          "result": true
+        },
+        {
+          "answer": "{1,2,3}",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "{d,s} \\ {d,e,s,p,a,i,r} = ?",
       "answers": [
         {
           "answer": "{f,u,n}",
@@ -50,6 +220,297 @@
         {
           "answer": "{d,s}",
           "result": false
+        }
+      ]
+    },
+    {
+      "question": "M := {1, 1, 2}. What is |P(M)|?",
+      "answers": [
+        {
+          "answer": "8",
+          "result": false
+        },
+        {
+          "answer": "{{}, {1}, {1}, {1,1}, {1,2}, {1,1,2}}",
+          "result": false
+        },
+        {
+          "answer": "4",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "Partial orders are",
+      "answers": [
+        {
+          "answer": "symmetric",
+          "result": false
+        },
+        {
+          "answer": "reflexive",
+          "result": true
+        },
+        {
+          "answer": "transitive",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "Let G be a directed graph and V the set of its vertices. What is the maximum length of a simple path in G?",
+      "answers": [
+        {
+          "answer": "|V| - 1",
+          "result": true
+        },
+        {
+          "answer": "|V|",
+          "result": false
+        },
+        {
+          "answer": "|V| + 1",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "X \\ Y = Y \\ X",
+      "answers": [
+        {
+          "answer": "is always true.",
+          "result": false
+        },
+        {
+          "answer": "is true if X = Y.",
+          "result": true
+        },
+        {
+          "answer": "is not always true.",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "Which of these functions is injective?",
+      "answers": [
+        {
+          "answer": "{(1,2), (2,2)}",
+          "result": false
+        },
+        {
+          "answer": "{(1,1), (2,1)}",
+          "result": false
+        },
+        {
+          "answer": "{(1,2), (2,1)}",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "Let N be the natural numbers, and Q be the rational numbers. Which of these is true?",
+      "answers": [
+        {
+          "answer": "|N| < |N x N|",
+          "result": false
+        },
+        {
+          "answer": "|N| = |Q|",
+          "result": true
+        },
+        {
+          "answer": "|Q| = |P(Q)|",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "(p -> q) V p",
+      "answers": [
+        {
+          "answer": "is true, if p is false.",
+          "result": true
+        },
+        {
+          "answer": "is false, if q is false.",
+          "result": false
+        },
+        {
+          "answer": "is true, if p is true.",
+          "result": true
+        }
+      ]
+    }
+  ],
+  "hard": [
+    {
+      "question": "Sigma",
+      "answers": [
+        {
+          "answer": "Sigma*",
+          "result": true
+        },
+        {
+          "answer": "Sigma",
+          "result": true
+        },
+        {
+          "answer": "Definitely not Sigma",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "{} is an element of {}",
+      "answers": [
+        {
+          "answer": "True.",
+          "result": false
+        },
+        {
+          "answer": "False.",
+          "result": true
+        },
+        {
+          "answer": "A little bit of both.",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "Which of these is a partition of {42, 42}?",
+      "answers": [
+        {
+          "answer": "{42}",
+          "result": false
+        },
+        {
+          "answer": "{{42}}",
+          "result": true
+        },
+        {
+          "answer": "{42, 42}",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "What does [10] mean?",
+      "answers": [
+        {
+          "answer": "{0,1,2,3,4,5,6,7,8,9}",
+          "result": false
+        },
+        {
+          "answer": "{1,2,3,4,5,6,7,8,9}",
+          "result": false
+        },
+        {
+          "answer": "{10,9,8,7,6,5,4,3,2,1}",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "{1,3,4,5,7,9,13,17} \\ {{1},3,4,6,{8},9,12,13} = ?",
+      "answers": [
+        {
+          "answer": "{1,5,7,17}",
+          "result": true
+        },
+        {
+          "answer": "{5,7,17}",
+          "result": false
+        },
+        {
+          "answer": "{1,7,13,17}",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "P({}) = ?",
+      "answers": [
+        {
+          "answer": "{{},{{}}}",
+          "result": false
+        },
+        {
+          "answer": "{}",
+          "result": false
+        },
+        {
+          "answer": "{{}}",
+          "result": true
+        }
+      ]
+    },
+    {
+      "question": "H := {(i,a), (o,e), (u,a)} and G := {(a,e), (e,a)}. Then HG = ?",
+      "answers": [
+        {
+          "answer": "{(i,e), (o,a), (u,e)}",
+          "result": true
+        },
+        {
+          "answer": "{(i,e), (u,a)}",
+          "result": false
+        },
+        {
+          "answer": "{(o,a), (u,a), (u,e)}",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "Which of these relations is transitive?",
+      "answers": [
+        {
+          "answer": "{(1,3), (3,4), (2,2)}",
+          "result": false
+        },
+        {
+          "answer": "{(6,7), (6,8), (9,5)}",
+          "result": true
+        },
+        {
+          "answer": "{(4,3), (3,3), (3,4)}",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "How many functions f : [5] -> {4, 2} are there?",
+      "answers": [
+        {
+          "answer": "32",
+          "result": true
+        },
+        {
+          "answer": "25",
+          "result": false
+        },
+        {
+          "answer": "64",
+          "result": false
+        }
+      ]
+    },
+    {
+      "question": "For which of these degree sequences does a simple graph with a Hamilton circle exist?",
+      "answers": [
+        {
+          "answer": "(2,2,4,4,4)",
+          "result": false
+        },
+        {
+          "answer": "(1,1,2,2,2)",
+          "result": false
+        },
+        {
+          "answer": "(2,2,2,2,3,3)",
+          "result": true
         }
       ]
     }

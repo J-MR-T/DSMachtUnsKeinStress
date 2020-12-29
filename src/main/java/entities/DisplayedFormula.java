@@ -1,6 +1,6 @@
 package entities;
 
-public class DisplayedFormula {
+class DisplayedFormula {
     private String question;
 
     public Answer[] getAnswers() {
@@ -46,4 +46,17 @@ public class DisplayedFormula {
         return answers[i];
     }
 
+    @Override
+    public String toString() {
+        StringBuilder returnVal = new StringBuilder();
+        returnVal.append(question).append("\n\n");
+        char questionNumber = 'A';
+        AtomicInteger index = new AtomicInteger();
+        Arrays.stream(answers).forEach(e -> {
+            returnVal.append((char) (questionNumber + index.get())).
+                    append(": ").append(e.getAnswerString()).append("\n");
+            index.getAndIncrement();
+        });
+        return returnVal.toString();
+    }
 }
