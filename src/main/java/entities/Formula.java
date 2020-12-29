@@ -29,7 +29,7 @@ public class Formula extends Entity {
     public String toString() {
         if (displayForm != null) {
             StringBuilder render = new StringBuilder();
-            render.append("So it seems you ran into me  -  now you got to solve me\n" +
+            render.append("So it seems you ran into me  -  now you've got to solve me\n" +
                     "Solve me for an epic boost or fail and die miserably\n\n");
             render.append(displayForm);
             render.append("\n");

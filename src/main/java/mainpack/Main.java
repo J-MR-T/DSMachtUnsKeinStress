@@ -23,12 +23,12 @@ public class Main {
         Renderer r = new Renderer(Initializer.getBoardWidth(), Initializer.getBoardHeight());
         r.fillWithEmptyFrame(r.peek());
 //        r.fillWithEmptyFrameThick();
-        r.draw(new int[]{1, 1}, DisplayObjects.BLOCK,r.peek());
+        r.draw(new int[]{1, 1}, DisplayObjects.BLOCK, r.peek());
         int[] playerPos = {1, 1};
         r.renderFrame();
     }
 
-    private static void showStoryLine(){
+    private static void showStoryLine() {
         System.out.println("So...");
         sleep(1200);
         slowPrint("you want to walk the path of excellence.", 900);
@@ -75,10 +75,10 @@ public class Main {
         }
     }
 
-    private static void slowPrint(String text, int totalTime){
+    private static void slowPrint(String text, int totalTime) {
         char[] textArr = text.toCharArray();
-        int timeBetweenChars =  totalTime / textArr.length;
-        for(char charToPrint : textArr){
+        int timeBetweenChars = totalTime / textArr.length;
+        for (char charToPrint : textArr) {
             System.out.print(charToPrint);
             sleep(timeBetweenChars);
         }

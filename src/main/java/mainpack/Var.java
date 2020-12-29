@@ -13,10 +13,12 @@ public class Var {
     public static final int width = 0;
     public static final int height = 0;
 
+    public static int whichText = -1;
+
     public static int gameState;
 
-    public static final long KURZTEST_DURATION = 30l*1000;
-    public static final long TIME_BETWEEN_KURZTESTS = 180l*1000;
+    public static final long KURZTEST_DURATION = 30l * 1000;
+    public static final long TIME_BETWEEN_KURZTESTS = 180l * 1000;
 
 
     public static int gameStage = StageEnum.NO_KURZTEST_YET.ordinal();

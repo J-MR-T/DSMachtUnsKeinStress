@@ -2,6 +2,7 @@ package rendering;
 
 import entities.Formula;
 import mainpack.StateEnum;
+import mainpack.Texts;
 import mainpack.Var;
 import org.jetbrains.annotations.Nullable;
 
@@ -57,13 +58,15 @@ public class Renderer {
                 }
                 s.append('\n');
             }
-        }else if(Var.gameState==StateEnum.HIT_BY_FORMULA.ordinal()&&Var.hitFormulaIndex!=-1){
+        } else if (Var.gameState == StateEnum.HIT_BY_FORMULA.ordinal() && Var.hitFormulaIndex != -1) {
             Formula hit = Var.formulas.get(Var.hitFormulaIndex);
             s.append(hit);
             //TODO warten bis formula gelöst ist
-        }else if(Var.gameState==StateEnum.MENU.ordinal()){
+        } else if (Var.gameState == StateEnum.MENU.ordinal()) {
             StringBuilder builder = new StringBuilder();
-
+            if (Var.whichText >= 0 && Var.whichText < Texts.values().length) {
+                builder.append(Texts.values()[Var.whichText]);
+            }
             String string = builder.toString();
             for (int i = 0; i < s.length(); i++) {
                 System.out.print(s.charAt(i));
