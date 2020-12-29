@@ -58,6 +58,7 @@ public class Renderer {
             }
         }else if(Var.gameState==Var.HIT_BY_FORMULA&&Var.hitFormulaIndex!=-1){
             Formula hit = Var.formulas.get(Var.hitFormulaIndex);
+            hit.getDis
         }
         System.out.println(s.toString());
     }
