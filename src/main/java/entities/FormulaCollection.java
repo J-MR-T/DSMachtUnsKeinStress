@@ -1,96 +1,27 @@
 package entities;
 
-import java.io.*;
-import java.util.ArrayList;
+import org.apache.commons.vfs2.FileSystemException;
+import resources.FormulaParser;
+import resources.ResourceLoader;
+
+import java.util.List;
+
 public class FormulaCollection {
 	private DisplayedFormula currentQuestion;
-	private ArrayList<DisplayedFormula> questionlist = new ArrayList<>();
-	private InputStream questionStream;
+	final private List<DisplayedFormula> questionList;
 	private int questionIndex = 0;
 	
-	public FormulaCollection(InputStream questionFile) {
-		this.questionStream = questionFile;
+	public FormulaCollection() throws FileSystemException {
+	    questionList = FormulaParser.parseFormulas(ResourceLoader.getResourceAsStream("Formulas.json"));
 	}
 
-	/**
-	 * Loads all Questions from Textfile into questionlist
-	 * @throws IOException
-	 */
-	public void loadQuestions() throws IOException{
-		String tempLine;
-		Reader fr = new InputStreamReader(questionStream);
-		BufferedReader br = new BufferedReader(fr);
-		
-		String question = "", answerA = "", answerB = "", answerC = "";
-		boolean aTrue = false, bTrue = false, cTrue = false;
-		int difficulty;
-		int subStringStart = 0, counter = 0;
-
-		tempLine = br.readLine();
-		
-		while (tempLine != null) {
-			
-			for(int i = 0; i < tempLine.length(); i++) {
-				if (tempLine.charAt(i) == '$') {
-					switch (counter) {
-						case 0 -> {
-							aTrue = true;
-							question = tempLine.substring(0, i - 1);
-							subStringStart = i + 1;
-						}
-						case 1 -> {
-							bTrue = true;
-							answerA = tempLine.substring(subStringStart, i - 1);
-							subStringStart = i + 1;
-						}
-						case 2 -> {
-							cTrue = true;
-							answerB = tempLine.substring(subStringStart, i - 1);
-							subStringStart = i + 1;
-							i = tempLine.length();
-						}
-					}
-					
-				} else if(tempLine.charAt(i) == '§') {
-					switch (counter) {
-						case 0 -> {
-							aTrue = true;
-							question = tempLine.substring(0, i - 1);
-							subStringStart = i + 1;
-						}
-						case 1 -> {
-							bTrue = true;
-							answerA = tempLine.substring(subStringStart, i - 1);
-							subStringStart = i + 1;
-						}
-						case 2 -> {
-							cTrue = true;
-							answerB = tempLine.substring(subStringStart, i - 1);
-							subStringStart = i + 1;
-							i = tempLine.length();
-						}
-					}
-						
-				}
-
-				answerC = tempLine.substring(subStringStart, tempLine.length()-2);
-				difficulty = Character.getNumericValue(tempLine.charAt(tempLine.length()-1));
-				questionlist.add(new DisplayedFormula(question, answerA, answerB, answerC, aTrue, bTrue, cTrue, difficulty));
-								
-			}
-			tempLine = br.readLine();
-		}
-
-		br.close();
-		}
-
 	public DisplayedFormula getRandomFormula() {
-		currentQuestion = questionlist.get((int) (Math.random()*(questionlist.size())));
+		currentQuestion = questionList.get((int) (Math.random()*(questionList.size())));
 		return currentQuestion;
 	}
 	
 	public DisplayedFormula getNextFormula() {
-		currentQuestion = questionlist.get(questionIndex++ % (questionlist.size()-1));
+		currentQuestion = questionList.get(questionIndex++ % (questionList.size()-1));
 		return currentQuestion;
 	}
 	

@@ -2,12 +2,22 @@ package entities;
 
 class DisplayedFormula {
     private String question;
+
+    public Answer[] getAnswers() {
+        return answers;
+    }
+
     private Answer[] answers;
+    private int difficulty;
 
+    public int getDifficulty() {
+        return difficulty;
+    }
 
-    DisplayedFormula(String question, Answer[] answers) {
+    public DisplayedFormula(String question, Answer[] answers, int difficulty) {
         this.question = question;
         this.answers = answers;
+        this.difficulty=difficulty;
     }
 //
 //    public boolean answerFormula(char answer) {
@@ -36,4 +46,17 @@ class DisplayedFormula {
         return answers[i];
     }
 
+    @Override
+    public String toString() {
+        StringBuilder returnVal = new StringBuilder();
+        returnVal.append(question).append("\n\n");
+        char questionNumber = 'A';
+        AtomicInteger index = new AtomicInteger();
+        Arrays.stream(answers).forEach(e -> {
+            returnVal.append((char) (questionNumber + index.get())).
+                    append(": ").append(e.getAnswerString()).append("\n");
+            index.getAndIncrement();
+        });
+        return returnVal.toString();
+    }
 }
