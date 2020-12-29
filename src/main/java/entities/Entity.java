@@ -38,50 +38,50 @@ public abstract class Entity {
     public abstract void updateInner();
 
     public boolean collidesWith(Entity e) {
-    	if (e.getX() <= pos[0] + bounds[0] -1  && e.getX() >= pos[0] &&
-     		   e.getY() <= pos[1] + bounds[1]-1 && e.getY() >= pos[1]) {
-             return true;
-        }
-        //Top-Right corner
-         if (e.getX() + e.getWidth()-1 <= pos[0] + bounds[0]-1 && e.getX() + e.getWidth()-1  >= pos[0] &&
-         		e.getY() <= pos[1] + bounds[1]-1 && e.getY() >= pos[1]) {
-             return true;
-         }
-         //Bottom-Right corner
-         if (e.getX() <= pos[0] + bounds[0]-1 && e.getX() >= pos[0] &&
-         		e.getY() + e.getHeight()-1 <= pos[1] + bounds[1]-1 && e.getY() + e.getWidth()-1 >= pos[1]) {
-             return true;
-         }
-        //Bottom-Left corner
-        if (e.getX() + e.getWidth()-1 <= pos[0] + bounds[0]-1 && e.getX() + e.getWidth()-1 >= pos[0] &&
-     		   e.getY() + e.getHeight()-1 <= pos[1] + bounds[1]-1 && e.getY() + e.getHeight()-1 >= pos[1]) {
-            return true;
-        }
-        
-        //Checks if one Corner of the other entity is inside this entity
-        if (pos[0] <= e.getX() + e.getWidth() -1  && pos[0] >= e.getX() &&
-     		   pos[1] <= e.getY() + e.getHeight()-1 && pos[1] >= e.getY()) {
-            return true;
-       }
-       //Top-Right corner
-        if (pos[0] + bounds[0] -1 <= e.getX() + e.getWidth()-1 && pos[0] + bounds[0]  >= e.getX() &&
-     		   pos[1] <= e.getY() + e.getHeight()-1 && pos[1] >= e.getY()) {
-            return true;
-        }
-        //Bottom-Right corner
-        if (pos[0] <= e.getX() + e.getWidth()-1 && pos[0] >= e.getWidth() &&
-        		pos[1] + bounds[1]-1 <= e.getY() + e.getHeight()-1 && pos[1] + bounds[1]-1 >= e.getY()) {
-            return true;
-        }
-       //Bottom-Left corner
-       if (pos[0] + bounds[0]-1 <= e.getX() + e.getWidth()-1 && pos[0] + bounds[0]-1 >= e.getX() &&
-    		   pos[1] + bounds[1]-1 <= e.getY() + e.getHeight()-1 && pos[1] + bounds[1]-1 >= e.getY()) {
-           return true;
-       }
+//    	if (e.getX() <= pos[0] + bounds[0] -1  && e.getX() >= pos[0] &&
+//     		   e.getY() <= pos[1] + bounds[1]-1 && e.getY() >= pos[1]) {
+//             return true;
+//        }
+//        //Top-Right corner
+//         if (e.getX() + e.getWidth()-1 <= pos[0] + bounds[0]-1 && e.getX() + e.getWidth()-1  >= pos[0] &&
+//         		e.getY() <= pos[1] + bounds[1]-1 && e.getY() >= pos[1]) {
+//             return true;
+//         }
+//         //Bottom-Right corner
+//         if (e.getX() <= pos[0] + bounds[0]-1 && e.getX() >= pos[0] &&
+//         		e.getY() + e.getHeight()-1 <= pos[1] + bounds[1]-1 && e.getY() + e.getWidth()-1 >= pos[1]) {
+//             return true;
+//         }
+//        //Bottom-Left corner
+//        if (e.getX() + e.getWidth()-1 <= pos[0] + bounds[0]-1 && e.getX() + e.getWidth()-1 >= pos[0] &&
+//     		   e.getY() + e.getHeight()-1 <= pos[1] + bounds[1]-1 && e.getY() + e.getHeight()-1 >= pos[1]) {
+//            return true;
+//        }
+//
+//        //Checks if one Corner of the other entity is inside this entity
+//        if (pos[0] <= e.getX() + e.getWidth() -1  && pos[0] >= e.getX() &&
+//     		   pos[1] <= e.getY() + e.getHeight()-1 && pos[1] >= e.getY()) {
+//            return true;
+//       }
+//       //Top-Right corner
+//        if (pos[0] + bounds[0] -1 <= e.getX() + e.getWidth()-1 && pos[0] + bounds[0]  >= e.getX() &&
+//     		   pos[1] <= e.getY() + e.getHeight()-1 && pos[1] >= e.getY()) {
+//            return true;
+//        }
+//        //Bottom-Right corner
+//        if (pos[0] <= e.getX() + e.getWidth()-1 && pos[0] >= e.getWidth() &&
+//        		pos[1] + bounds[1]-1 <= e.getY() + e.getHeight()-1 && pos[1] + bounds[1]-1 >= e.getY()) {
+//            return true;
+//        }
+//       //Bottom-Left corner
+//       if (pos[0] + bounds[0]-1 <= e.getX() + e.getWidth()-1 && pos[0] + bounds[0]-1 >= e.getX() &&
+//    		   pos[1] + bounds[1]-1 <= e.getY() + e.getHeight()-1 && pos[1] + bounds[1]-1 >= e.getY()) {
+//           return true;
+//       }
+
+        return pos[0] == e.getX() && pos[1] == e.getY();
 
 
-
-       return false;
 
     }
 
@@ -92,7 +92,7 @@ public abstract class Entity {
             } else {
 
             }
-        }catch(ArrayIndexOutOfBoundsException ignored){
+        } catch (ArrayIndexOutOfBoundsException ignored) {
 
         }
     }
@@ -106,7 +106,7 @@ public abstract class Entity {
     }
 
     public int getDisplayX(DisplayObjects[][] screenToRenderTo) {
-        return pos[0]*2!=screenToRenderTo.length?pos[0]*2:pos[0]*2-1;
+        return pos[0] * 2 != screenToRenderTo.length ? pos[0] * 2 : pos[0] * 2 - 1;
     }
 
     public int getDisplayY(DisplayObjects[][] screenToRenderTo) {
