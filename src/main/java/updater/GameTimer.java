@@ -1,5 +1,7 @@
 package updater;
 
+import mainpack.StageEnum;
+import mainpack.StateEnum;
 import mainpack.Var;
 
 import java.util.Timer;
@@ -37,11 +39,11 @@ public class GameTimer extends Timer {
      * Runs the next stage
      */
     public void triggerWaitingForNextStage() {
-        if (Var.gameStage <= Var.BOSS_STAGE) {
+        if (Var.gameStage <= StageEnum.BOSS_STAGE.ordinal()) {
             this.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    Var.gameState=Var.KURZTEST;
+                    Var.gameState= StateEnum.KURZTEST.ordinal();
                     Var.gameStage++;
                 }
             }, Var.TIME_BETWEEN_KURZTESTS);

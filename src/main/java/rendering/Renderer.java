@@ -1,6 +1,7 @@
 package rendering;
 
 import entities.Formula;
+import mainpack.StateEnum;
 import mainpack.Var;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,7 +41,7 @@ public class Renderer {
         StringBuilder s = new StringBuilder();
         //Add as many empty lines as needed
         s.append("\n".repeat(30));
-        if (Var.gameState == Var.EVADING_FORMULAS) {
+        if (Var.gameState == StateEnum.EVADING_FORMULAS.ordinal()) {
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
                     for (int i = screens.size() - 1; i >= 0; i++) {
@@ -56,7 +57,7 @@ public class Renderer {
                 }
                 s.append('\n');
             }
-        }else if(Var.gameState==Var.HIT_BY_FORMULA&&Var.hitFormulaIndex!=-1){
+        }else if(Var.gameState==StateEnum.HIT_BY_FORMULA.ordinal()&&Var.hitFormulaIndex!=-1){
             Formula hit = Var.formulas.get(Var.hitFormulaIndex);
             s.append(hit);
             //TODO warten bis formula gelöst ist

@@ -1,6 +1,7 @@
 package updater;
 
 import entities.Formula;
+import mainpack.StateEnum;
 import mainpack.Var;
 
 public class Updater {
@@ -22,7 +23,7 @@ public class Updater {
         for (int i = 0; i < Var.formulas.size(); i++) {
             if (Var.player.collidesWith(Var.formulas.get(i))) {
                 //Hit by formula
-                Var.gameState = Var.HIT_BY_FORMULA;
+                Var.gameState = StateEnum.HIT_BY_FORMULA.ordinal();
                 Var.hitFormulaIndex = i;
             }
         }
