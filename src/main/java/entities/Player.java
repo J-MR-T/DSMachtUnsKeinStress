@@ -7,6 +7,10 @@ public class Player extends Entity {
     private int hp;
     private final int maxHp;
 
+    private char movement;
+
+
+
     public Player(int[] pos, DisplayObjects[][] charRepresentation, int[] bounds, int maxHp) {
         super(pos, charRepresentation, bounds, 1);
         this.maxHp = maxHp;
@@ -49,6 +53,16 @@ public class Player extends Entity {
 
     @Override
     public void updateInner() {
+        switch (movement){
+            case 'w'->moveUp();
+            case 'a'->moveLeft();
+            case 's'->moveDown();
+            case 'd'->moveRight();
+        }
+    }
 
+    public Player setMovement(char movement) {
+        this.movement = movement;
+        return this;
     }
 }

@@ -1,8 +1,16 @@
 package updater;
 
+import UserInput.KeyListener;
 import entities.Formula;
+import entities.Player;
+import mainpack.StageEnum;
 import mainpack.StateEnum;
 import mainpack.Var;
+import rendering.DisplayObjects;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+
+import static mainpack.StateEnum.EVADING_FORMULAS;
 
 public class Updater {
 
@@ -11,9 +19,55 @@ public class Updater {
     private static int durationOfStage;
     private static int spawnRate;
     private static int stepsSinceStageTrigger = 0;
+    private static GameTimer timer;
+    private static StageEnum stage;
+    private static AtomicBoolean updated=new AtomicBoolean(false);
+    private static KeyListener keys;
 
-    public static void update() throws InterruptedException {
-        Var.player.update();
+    static void setGameStage(StageEnum s){
+        stage=s;
+        updated.set(true);
+    }
+
+    public static void run(boolean forceGui){
+        Var.player=new Player(new int[]{1,Var.height-2},new DisplayObjects[][]{{DisplayObjects.BLOCK}},new int[]{1,1},3);
+        timer=new GameTimer();
+        keys= KeyListener.getKeyListener(Updater::update,forceGui);
+        timer.triggerWaitingForNextStage();
+    }
+
+    public static void update(char input) {
+
+        if(updated.get()){
+            switch (stage){
+                case KURZTEST_1->{
+                    triggerKurztest(1);
+                }
+                case KURZTEST_2 -> {
+                    triggerKurztest(2);
+                }
+                case KURZTEST_3 -> {
+                    triggerKurztest(3);
+                }
+                case BOSS_STAGE -> {
+                    triggerBoss();
+                }
+            }
+        }
+
+        switch (Var.gameState){
+            case EVADING_FORMULAS, KURZTEST, BOSS->{
+                Var.player.setMovement(input).update();
+                for (int i = 0; i < Var.formulas.size(); i++) {
+                    Formula formula = Var.formulas.get(i);
+                    formula.update();
+                    //Not sure if this can be done in one go
+                    formula.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
+                }
+            }
+        }
+
+        Var.player.setMovement(input).update();
         for (int i = 0; i < Var.formulas.size(); i++) {
             Formula formula = Var.formulas.get(i);
             formula.update();
@@ -29,7 +83,11 @@ public class Updater {
         }
         Var.player.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
 
-        Var.r.renderFrame();
+        try {
+            Var.r.renderFrame();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Var.r.resetEntityLayer();
 
         //Spawning of new Entities
