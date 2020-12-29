@@ -22,13 +22,15 @@ public class Main {
 //            System.out.println("You have to enter useful values, you know? smh");
 //            System.exit(0);
 //        }
-        Renderer r = new Renderer(20, 20);
-        r.fillWithEmptyFrame(r.peek());
+        Var.gameState = StateEnum.EVADING_FORMULAS;
+        Var.r = new Renderer(20, 20);
+        Var.r.fillWithEmptyFrame(Var.r.screens.get(0));
 //        r.fillWithEmptyFrameThick();
-        r.draw(new int[]{1, 1}, DisplayObjects.BLOCK, r.peek());
+        Var.r.draw(new int[]{1, 1}, DisplayObjects.BLOCK, Var.r.peek());
+        Var.r.draw(new int[]{2, 1}, DisplayObjects.BLOCK, Var.r.peek());
+        Var.r.draw(new int[]{2, 2}, DisplayObjects.BLOCK, Var.r.peek());
         int[] playerPos = {1, 1};
-        System.out.println(r.screens.size());
-        r.renderFrame();
+        Var.r.renderFrame();
         Updater.run(true);
     }
 

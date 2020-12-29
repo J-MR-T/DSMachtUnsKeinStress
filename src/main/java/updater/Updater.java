@@ -91,6 +91,8 @@ public class Updater {
                         //Hit by formula
                         Var.gameState = StateEnum.HIT_BY_FORMULA;
                         Var.hitFormulaIndex = i;
+                        //Deletes formula as soon as we hit it
+                        Var.formulas.remove(i);
                         Var.formulas.get(Var.hitFormulaIndex).hit();
                     }
                 }
@@ -101,6 +103,10 @@ public class Updater {
                     throw new RuntimeException(e);
                 }
                 Var.r.resetEntityLayer();
+
+                if (Var.gameState == StateEnum.HIT_BY_FORMULA) {
+                    Var.formulas.get(Var.hitFormulaIndex).hit();
+                }
 
                 //Spawning of new Entities
                 if (stepsSinceStageTrigger >= durationOfStage) {
@@ -119,9 +125,8 @@ public class Updater {
                 //Spawning now
                 int entitiesToSpawn = spawnRate;
                 for (int i = 0; i < entitiesToSpawn; i++) {
-                    //lets generate a random x for the coord of the Formula
-                     Formula newFormula = new Formula(new int[]{randomX(), 0}, Var.formulaDisplay, new int[]{1,1}, Var.formulaFrequency, randomDifficulty());
-                     Var.formulas.add(newFormula);
+                    Formula newFormula = new Formula(getRandomCoordsOnTop(), Var.formulaDisplay, new int[]{1,1}, Var.formulaFrequency, randomDifficulty());
+                    Var.formulas.add(newFormula);
                 }
 
                 stepsSinceStageTrigger++;
@@ -189,5 +194,18 @@ public class Updater {
     }
     private static int randomDifficulty() {
         return (int) ((Math.random() * (2)));
+    }
+
+    private static int[] getRandomCoordsOnTop(){
+        //lets generate a random x for the coord of the Formula
+        int[] coords = new int[]{randomX(), 0};
+        //lets check if there is already a formula there
+        for (int j = Var.formulas.size()-1; j >= 0; j--) {
+            if(Var.formulas.get(j).getX()==coords[0])return getRandomCoordsOnTop(); //Recursively find new coords
+            if(Var.formulas.get(j).getY()>0){
+                break; //We can skip looking since from now on all formulas will be below
+            }
+        }
+        return coords;
     }
 }

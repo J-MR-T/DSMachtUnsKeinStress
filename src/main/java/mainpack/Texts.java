@@ -89,5 +89,13 @@ public enum Texts {
             "\n");
 
     Texts(String s) {
+        this.s = s;
     }
+
+    String s;
+
+    public String getS() {
+        return s;
+    }
+
 }
