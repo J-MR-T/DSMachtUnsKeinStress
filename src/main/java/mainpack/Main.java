@@ -43,7 +43,7 @@ public class Main {
         int[] playerPos = {1, 1};
         Var.r.renderFrame();
         Var.timer = new GameTimer();
-        Updater.run(true);
+        Updater.run(!ln.hasOption("g"));
     }
 
     private static void showStoryLine() {
