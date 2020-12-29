@@ -27,6 +27,8 @@ dependencies {
     // This dependency is used by the application.
     implementation 'org.jetbrains:annotations:16.0.2'
     implementation 'net.java.dev.jna:jna:5.6.0'
+    implementation 'org.apache.commons:commons-vfs2:2.7.0'
+    implementation 'commons-logging:commons-logging:1.2'
 }
 
 application {
