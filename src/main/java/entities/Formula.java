@@ -4,6 +4,10 @@ import rendering.DisplayObjects;
 import mainpack.Var;
 
 public class Formula extends Entity {
+    public DisplayedFormula getDisplayForm() {
+        return displayForm;
+    }
+
     private DisplayedFormula displayForm;
     private int difficulty;
 

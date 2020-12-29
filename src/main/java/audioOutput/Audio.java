@@ -11,7 +11,7 @@ public class Audio {
      * Plays the AudioClip
      * @param url
      */
-    public void play(URL url) {
+    public static void play(URL url) {
 
         AudioClip clip = Applet.newAudioClip(url);
         new Thread() {

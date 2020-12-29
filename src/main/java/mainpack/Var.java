@@ -3,6 +3,7 @@ package mainpack;
 import entities.Formula;
 import entities.FormulaCollection;
 import entities.Player;
+import rendering.DisplayObjects;
 import rendering.Renderer;
 import updater.GameTimer;
 
@@ -18,8 +19,10 @@ public class Var {
 
     public static StateEnum gameState;
 
-    public static final long KURZTEST_DURATION = 30l * 1000;
+    public static final int KURZTEST_DURATION = 40;
     public static final long TIME_BETWEEN_KURZTESTS = 180l * 1000;
+
+    public static final int EXAM_DURATION = 100;
 
 
     public static int gameStage = StageEnum.NO_KURZTEST_YET.ordinal();
@@ -36,4 +39,7 @@ public class Var {
     public static float defaultPercHard = 0.0f;
     public static int defaultSpawnRate = 2;
 
+    public static int formulaFrequency = 3; //Frequency of the Formula moving -  higher the slower
+
+    public static DisplayObjects[][] formulaDisplay = new DisplayObjects[][]{{DisplayObjects.FORMULA_SIGN}};
 }

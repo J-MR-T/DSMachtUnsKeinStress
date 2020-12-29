@@ -1,15 +1,23 @@
 package updater;
 
 import UserInput.KeyListener;
+import audioOutput.Audio;
+import entities.Answer;
 import entities.Formula;
 import entities.FormulaCollection;
 import entities.Player;
 import mainpack.StageEnum;
 import mainpack.StateEnum;
 import mainpack.Var;
+import rendering.DisplayObjects;
+
+import java.util.EventListener;
+import java.util.function.Function;
 import org.apache.commons.vfs2.FileSystemException;
 import rendering.DisplayObjects;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static mainpack.StateEnum.EVADING_FORMULAS;
@@ -60,6 +68,17 @@ public class Updater {
 
         switch (Var.gameState) {
             case EVADING_FORMULAS, KURZTEST, BOSS -> {
+                switch (input){
+                    case 'w','a','s','d',' '->{}
+                    default -> {
+                        try {
+                            Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                        } catch (MalformedURLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        return;
+                    }
+                }
                 Var.player.setMovement(input).update();
                 for (int i = 0; i < Var.formulas.size(); i++) {
                     Formula formula = Var.formulas.get(i);
@@ -72,6 +91,7 @@ public class Updater {
                         //Hit by formula
                         Var.gameState = StateEnum.HIT_BY_FORMULA;
                         Var.hitFormulaIndex = i;
+                        Var.formulas.get(Var.hitFormulaIndex).hit();
                     }
                 }
                 Var.player.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
@@ -94,14 +114,49 @@ public class Updater {
                     //ruft den neuen Timer auf
                     Var.timer.triggerWaitingForNextStage();
                 }
-                if (Var.gameState == StateEnum.HIT_BY_FORMULA) {
-                    Var.formulas.get(Var.hitFormulaIndex).hit();
+
+
+                //Spawning now
+                int entitiesToSpawn = spawnRate;
+                for (int i = 0; i < entitiesToSpawn; i++) {
+                    //lets generate a random x for the coord of the Formula
+                     Formula newFormula = new Formula(new int[]{randomX(), 0}, Var.formulaDisplay, new int[]{1,1}, Var.formulaFrequency, randomDifficulty());
+                     Var.formulas.add(newFormula);
                 }
 
-                //Spawn jetzt
-
-
                 stepsSinceStageTrigger++;
+            }
+            case HIT_BY_FORMULA -> {
+                try{
+                    var a=Var.formulas.get(Var.hitFormulaIndex).getDisplayForm().getAnswer(Integer.parseInt(String.valueOf(input)));
+                    if(a.isRight()){
+
+                    }else {
+                        Var.player.setHp(Var.player.getHp()-1);
+
+                    }
+                    Var.gameState= EVADING_FORMULAS;
+                    Var.formulas.remove(Var.hitFormulaIndex);
+                }catch (NumberFormatException e){
+                    try {
+                        Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                    } catch (MalformedURLException e2) {
+                        throw new RuntimeException(e2);
+                    }
+                }catch (IndexOutOfBoundsException e){
+                    try {
+                        Audio.play(new URL("res://sounds/betrugsversuch.wav"));
+                    } catch (MalformedURLException e2) {
+                        throw new RuntimeException(e2);
+                    }
+                }
+            }
+            case MENU -> {
+                try {
+                    Var.r.renderFrame();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -127,6 +182,12 @@ public class Updater {
     }
 
     public static void triggerBoss(){
-
+        setSpawningParameters(0.4f, 0.6f, (int) Var.EXAM_DURATION, 8); //TODO playtest and determine values
+    }
+    private static int randomX() {
+        return (int) ((Math.random() * Var.width));
+    }
+    private static int randomDifficulty() {
+        return (int) ((Math.random() * (2)));
     }
 }

@@ -21,6 +21,7 @@ public enum DisplayObjects {
     CORNER_UP_RIGHT('\u259C'),
     CORNER_LOW_LEFT('\u2599'),
     CORNER_LOW_RIGHT('\u259F'),
+    FORMULA_SIGN('\u2BC6'),
     DOWNWARD_TRIANGLE('\u2BC6');
 
 
