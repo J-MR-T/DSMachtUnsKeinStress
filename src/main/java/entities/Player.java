@@ -4,6 +4,14 @@ import rendering.DisplayObjects;
 
 public class Player extends Entity {
 
+    public int getHp() {
+        return hp;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
     private int hp;
     private final int maxHp;
 

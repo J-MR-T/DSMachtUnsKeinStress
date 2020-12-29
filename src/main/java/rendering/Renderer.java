@@ -25,6 +25,18 @@ public class Renderer {
         this.height = height;
         screens = new ArrayList<DisplayObjects[][]>();
         screens.add(new DisplayObjects[width * 2 - 1][height]);
+        addEmptyScreen(width * 2 - 1, height);
+    }
+
+    public void addEmptyScreen(int width, int height) {
+        screens.add(new DisplayObjects[width][height]);
+        DisplayObjects[][] newScreen = peek();
+        for (int i = 0; i < newScreen.length; i++) {
+            DisplayObjects[] displayObjects = newScreen[i];
+            for (int j = 0; j < displayObjects.length; j++) {
+                displayObjects[j] = DisplayObjects.EMPTY;
+            }
+        }
     }
 
     public void changeToAscii() {
@@ -45,15 +57,19 @@ public class Renderer {
         if (Var.gameState == StateEnum.EVADING_FORMULAS) {
             for (int y = 0; y < height; y++) {
                 for (int x = 0; x < width; x++) {
-                    for (int i = screens.size() - 1; i >= 0; i++) {
+                    boolean appended = false;
+                    for (int i = screens.size() - 1; i >= 0; i--) {
                         DisplayObjects[][] screen = screens.get(i);
-                        if (screen[x][y] != DisplayObjects.EMPTY || i == 0) {
-                            if (i != 0) {
-                                s.append(screen[x][y]);
-                            } else {
-                                s.append(DisplayObjects.SPACE);
-                            }
+                        if (i == 0 && !appended) {
+                            s.append(screens.get(0)[x][y]);
+                            appended = true;
+                        } else if (screen[x][y] != DisplayObjects.EMPTY && !appended) {
+                            s.append(screen[x][y]);
+                            appended = true;
                         }
+                    }
+                    if (!appended) {
+                        s.append(DisplayObjects.SPACE);
                     }
                 }
                 s.append('\n');
@@ -65,11 +81,11 @@ public class Renderer {
         } else if (Var.gameState == StateEnum.MENU) {
             StringBuilder builder = new StringBuilder();
             if (Var.whichText >= 0 && Var.whichText < Texts.values().length) {
-                builder.append(Texts.values()[Var.whichText]);
+                builder.append(Texts.values()[Var.whichText].getS());
             }
             String string = builder.toString();
-            for (int i = 0; i < s.length(); i++) {
-                System.out.print(s.charAt(i));
+            for (int i = 0; i < builder.length(); i++) {
+                System.out.print(string.charAt(i));
                 Thread.sleep(10);
             }
             return;
