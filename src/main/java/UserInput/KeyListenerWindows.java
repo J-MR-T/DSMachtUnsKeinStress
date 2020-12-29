@@ -1,20 +1,15 @@
 package UserInput;
 
-import rendering.DisplayObjects;
-import rendering.Renderer;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 
-public class KeyListenerWindows extends KeyListenerAbstract{
+class KeyListenerWindows implements KeyListener {
 
     private final JFrame frame;
     private final KeyListenerImpl listener;
-   public  KeyListenerWindows(CharConsumer c){
+    KeyListenerWindows(CharConsumer c){
        listener=new KeyListenerImpl(c);
        frame = new JFrame();
        frame.setBounds(-50,-50,0,0);
@@ -32,7 +27,7 @@ public class KeyListenerWindows extends KeyListenerAbstract{
         frame.dispose();
     }
 
-    private class KeyListenerImpl implements KeyListener{
+    private class KeyListenerImpl implements java.awt.event.KeyListener {
 
         private  final CharConsumer consumer;
 
