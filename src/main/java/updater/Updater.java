@@ -103,7 +103,7 @@ public class Updater {
                 }
 
 
-                //Spawn jetzt
+                //Spawning now
                 int entitiesToSpawn = spawnRate;
                 for (int i = 0; i < entitiesToSpawn; i++) {
                     //lets generate a random x for the coord of the Formula
@@ -137,7 +137,7 @@ public class Updater {
     }
 
     public static void triggerBoss(){
-
+        setSpawningParameters(0.4f, 0.6f, (int) Var.EXAM_DURATION, 8); //TODO playtest and determine values
     }
     private static int randomX() {
         return (int) ((Math.random() * Var.width));

@@ -19,8 +19,10 @@ public class Var {
 
     public static StateEnum gameState;
 
-    public static final long KURZTEST_DURATION = 30l * 1000;
+    public static final int KURZTEST_DURATION = 40;
     public static final long TIME_BETWEEN_KURZTESTS = 180l * 1000;
+
+    public static final int EXAM_DURATION = 100;
 
 
     public static int gameStage = StageEnum.NO_KURZTEST_YET.ordinal();
