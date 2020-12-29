@@ -27,14 +27,13 @@ public class Formula extends Entity {
         this.pos = newPos;
     }
 
-    @Override
     protected void triggerMove() {
         pos[1]++;
     }
 
     @Override
     public void updateInner() {
-
+        triggerMove();
     }
 
     public void hit(){

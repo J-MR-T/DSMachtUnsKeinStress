@@ -27,14 +27,10 @@ public abstract class Entity {
      */
     protected abstract void move(int newPos[]);
 
-    //Triggers the default player Movement
-    protected abstract void triggerMove();
-
     public void update() {
         currentFrequency++;
         if (currentFrequency == frequency) {
             currentFrequency = 0;
-            triggerMove();
         }
         updateInner();
     }

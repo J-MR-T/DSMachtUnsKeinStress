@@ -83,6 +83,9 @@ public class Updater {
                 for (int i = 0; i < Var.formulas.size(); i++) {
                     Formula formula = Var.formulas.get(i);
                     formula.update();
+                    if(formula.getY()>=Var.height-1){
+                        Var.formulas.remove(i);
+                    }
                     //Not sure if this can be done in one go
                     formula.render(Var.r.screens.get(Var.r.ENTITY_LAYER));
                 }
@@ -187,7 +190,7 @@ public class Updater {
         setSpawningParameters(0.4f, 0.6f, (int) Var.EXAM_DURATION, 8); //TODO playtest and determine values
     }
     private static int randomX() {
-        return (int) ((Math.random() * Var.width));
+        return (int) ((Math.random() * (Var.width-2)))+1;
     }
     private static int randomDifficulty() {
         return (int) ((Math.random() * (2)));
