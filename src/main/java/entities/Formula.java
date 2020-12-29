@@ -28,6 +28,11 @@ public class Formula extends Entity {
     }
 
     @Override
+    protected void triggerMove() {
+        pos[1]++;
+    }
+
+    @Override
     public void updateInner() {
 
     }

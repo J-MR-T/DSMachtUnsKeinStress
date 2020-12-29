@@ -207,8 +207,8 @@ public class Updater {
             //lets check if there is already a formula there
             for (int j = Var.formulas.size()-1; j >= 0; j--) {
                 if(Var.formulas.get(j).getX()==coords[0]) {
-                    conflict = true;
-                    break; //Recursively find new coords
+                        conflict = true;
+                        break; //Recursively find new coords
                     }
                 if(Var.formulas.get(j).getY()>0){
                     break; //We can skip looking since from now on all formulas will be below
